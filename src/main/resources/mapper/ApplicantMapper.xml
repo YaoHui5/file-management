@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bnuz.filemanagement.mapper.ApplicantMapper">
+    <!-- 添加申请人 -->
+    <insert id="add" parameterType="com.bnuz.filemanagement.model.Applicant">
+        insert into applicant(name,id_card,phone,gender,
+                              mate_name,mate_idcard,working_address)
+        values(#{name},#{idCard},#{phone},#{gender},#{mateName},#{mateIdCard},#{workingAddress});
+    </insert>
+
+    <!-- 根据申请人id删除申请人信息 -->
+    <delete id="deleteById">
+        delete from applicant where id=#{id};
+    </delete>
+
+    <!-- 根据申请人id更新申请人信息 -->
+    <update id="updateById">
+        update applicant set id_card=#{idCard},working_address=#{workingAddress},phone=#{phone} where id=#{id};
+    </update>
+
+
+    <!-- 根据条件修改申请人信息 -->
+<!--    <update id="updateByExample" parameterType="com.bnuz.filemanagement.model.Applicant">-->
+<!--        update applicant set-->
+<!--        <if test="idCard != null">id_card = #{idCard},</if>-->
+<!--        <if test="uid != null">uid = #{uid},</if>-->
+<!--        <if test="salesUnit != null">sales_unit = #{salesUnit},</if>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+
+
+    <!-- 根据申请人id查询申请人信息 -->
+    <select id="getById" resultType="com.bnuz.filemanagement.model.Applicant">
+        select *from applicant where id=#{id};
+    </select>
+
+    <!-- 查询所有申请人信息 -->
+    <select id="getAll" resultType="com.bnuz.filemanagement.model.Applicant">
+        select *from applicant;
+    </select>
+
+    <!-- 根据条件查询申请人信息 -->
+    <select id="selectByExample" resultType="com.bnuz.filemanagement.model.Applicant">
+        select *from applicant
+        <where>
+            <if test="name !=null and name!=''">
+                name like concat('%',#{name},'%')
+            </if>
+
+            <if test="idCard !=null and idCard !=''">
+                AND id_card = #{idCard}
+            </if>
+
+            <if test="mateName !=null and mateName !=''">
+                AND mate_name like concat('%',#{mateName},'%')
+            </if>
+
+            <if test="mateIdCard !=null and mateIdCard != ''">
+                AND mate_idcard = #{mateIdCard}
+            </if>
+        </where>
+    </select>
+
+</mapper>
