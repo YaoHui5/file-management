@@ -2,15 +2,13 @@ package com.bnuz.filemanagement.model;
 
 import java.util.Date;
 
-public class PurchaseFile {
+public class PublicHousing {
 
     private  int id;
 
     private  String uid;
 
-    private  String realtyName;
-
-    private String ownerName;
+    private String applicantName;
 
     private String idCard;
 
@@ -24,14 +22,6 @@ public class PurchaseFile {
 
 
 
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
     public int getId() {
         return id;
     }
@@ -40,20 +30,20 @@ public class PurchaseFile {
         this.id = id;
     }
 
-    public String getRealtyName() {
-        return realtyName;
+    public String getUid() {
+        return uid;
     }
 
-    public void setRealtyName(String realtyName) {
-        this.realtyName = realtyName;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public String getOwnerName() {
-        return ownerName;
+    public String getApplicantName() {
+        return applicantName;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
+    public void setApplicantName(String applicantName) {
+        this.applicantName = applicantName;
     }
 
     public String getIdCard() {

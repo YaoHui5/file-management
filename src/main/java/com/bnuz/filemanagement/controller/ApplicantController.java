@@ -103,7 +103,7 @@ public class ApplicantController {
 //        return Result.success(applicantService.getApplicantByMateIdCard(mateIdCard));
 //    }
 
-    @ApiOperation(value = "查询申请人信息",notes = "根据申请人姓名/身份证/配偶姓名/配偶身份证任一条件查询申请人信息")
+    @ApiOperation(value = "条件查询/模糊查询申请人信息",notes = "根据申请人姓名/身份证/配偶姓名/配偶身份证任一条件查询申请人信息")
     @RequestMapping(value = "/select",method = RequestMethod.GET)
     public Result selectApplicantByExample(Applicant applicant){
         return Result.success(applicantService.selectApplicantByExample(applicant));

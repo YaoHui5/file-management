@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bnuz.filemanagement.mapper.ReformedHouseMapper">
+
+    <!-- 录入房改简况 -->
+    <insert id="add">
+        insert into reformed_house(uid,realty_name,house_location,house_area,house_type,
+                                   house_price,house_cost,reformed_date,out_standard)
+        values (#{uid},#{realtyName},#{houseLocation},#{houseArea},#{houseType},
+                #{housePrice},#{houseCost},#{reformedDate},#{outStandard});
+    </insert>
+
+
+    <!-- 根据Uid修改 -->
+    <update id="updateByUid" parameterType="com.bnuz.filemanagement.model.ReformedHouse">
+        update reformed_house
+        <set>
+            <if test="realtyName != null">realty_name = #{realtyName},</if>
+            <if test="houseLocation != null">house_location = #{houseLocation},</if>
+            <if test="houseArea != null">house_area = #{houseArea},</if>
+            <if test="houseType != null">house_type = #{houseType},</if>
+            <if test="housePrice != null">house_price = #{housePrice},</if>
+            <if test="houseCost != null">house_cost = #{houseCost},</if>
+            <if test="reformedDate != null">reformed_date = #{reformedDate},</if>
+            <if test="outStandard != null">out_standard = #{outStandard},</if>
+        </set>
+        where uid = #{uid}
+    </update>
+
+
+    <select id="getByUid" resultType="com.bnuz.filemanagement.model.ReformedHouse">
+        select uid,realty_name,house_location,house_area,house_type,
+               house_price,house_cost,reformed_date,out_standard
+        from reformed_house where uid=#{uid};
+    </select>
+
+
+
+
+
+
+
+</mapper>

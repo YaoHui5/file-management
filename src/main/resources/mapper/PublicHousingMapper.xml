@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bnuz.filemanagement.mapper.PurchaseFileMapper">
+<mapper namespace="com.bnuz.filemanagement.mapper.PublicHousingMapper">
 
     <!-- 录入档案信息 -->
     <insert id="insert">
-        insert into purchase_file(realty_name,uid,owner_name,id_card,working_address,
+        insert into public_housing(uid,applicant_name,id_card,working_address,
                                   entry_date,sales_unit,house_type)
-        values (#{realtyName},#{uid},#{ownerName},#{idCard},#{workingAddress},#{entryDate},#{salesUnit},#{houseType});
+        values (#{uid},#{applicantName},#{idCard},#{workingAddress},#{entryDate},#{salesUnit},#{houseType});
     </insert>
 
 
