@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bnuz.filemanagement.mapper.HousingFileMapper">
+
+    <sql id="select">
+        id,
+        uid,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
+                                 entry_date,sales_unit,property_transition
+    </sql>
+    
+    <!-- 录入个人住房档案 -->
+    <insert id="add">
+        insert into housing_file(uid,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
+                                 entry_date,sales_unit,property_transition)
+        values (#{uid},#{ownerName},#{gender},#{idCard},#{phone},#{workingAddress},
+                #{houseLocation},#{houseArea},#{houseType},#{entryDate},#{salesUnit},#{propertyTransition});
+    </insert>
+
+
+    <select id="findId" parameterType="com.bnuz.filemanagement.model.HousingFile">
+        select 
+        <include refid="select"></include>
+        from housing_file
+        <where>
+            <if test="uid !=null and uid!=''">
+                name like concat('%',#{name},'%')
+            </if>
+
+            <if test="idCard !=null and idCard !=''">
+                AND id_card = #{idCard}
+            </if>
+
+            <if test="mateName !=null and mateName !=''">
+                AND mate_name like concat('%',#{mateName},'%')
+            </if>
+
+            <if test="mateIdCard !=null and mateIdCard != ''">
+                AND mate_idcard = #{mateIdCard}
+            </if>
+        </where>
+        
+    </select>
+
+    <!-- 修改个人住房档案数据-->
+    <update id="updateByUid" parameterType="com.bnuz.filemanagement.model.HousingFile">
+        update housing_file
+        <set>
+            <if test="houseArea != null">house_area = #{houseArea},</if>
+            <if test="houseType != null">house_type = #{houseType},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="propertyRightData != null">property_right_data = #{propertyRightData},</if>
+            <if test="partToFull != null">part_to_full = #{partToFull},</if>
+            <if test="propertyRightRetract != null">property_right_retract = #{propertyRightRetract},</if>
+            <if test="ownerUnit != null">owner_unit = #{ownerUnit},</if>
+        </set>
+        where uid = #{uid}
+
+    </update>
+    
+
+
+
+
+
+</mapper>

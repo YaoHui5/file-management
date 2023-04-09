@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bnuz.filemanagement.mapper.PropertyRightMapper">
+
+    <!-- 录入产权产籍数据 -->
+    <insert id="add">
+        insert into property_right(uid,house_area,house_type,location,part_to_full,
+                                   property_right_data,property_right_retract,owner_unit)
+        values (#{uid},#{houseArea},#{houseType},#{location},#{partToFull},
+                #{propertyRightData},#{propertyRightRetract},#{ownerUnit});
+    </insert>
+
+
+    <!-- 修改产权产籍数据-->
+    <update id="updateByUid" parameterType="com.bnuz.filemanagement.model.PropertyRight">
+        update property_right
+        <set>
+            <if test="houseArea != null">house_area = #{houseArea},</if>
+            <if test="houseType != null">house_type = #{houseType},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="propertyRightData != null">property_right_data = #{propertyRightData},</if>
+            <if test="partToFull != null">part_to_full = #{partToFull},</if>
+            <if test="propertyRightRetract != null">property_right_retract = #{propertyRightRetract},</if>
+            <if test="ownerUnit != null">owner_unit = #{ownerUnit},</if>
+        </set>
+        where uid = #{uid}
+
+    </update>
+
+
+
+</mapper>
