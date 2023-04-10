@@ -2,6 +2,7 @@ package com.bnuz.filemanagement.model;
 
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -11,9 +12,10 @@ import java.util.Date;
 @Component
 public class HousingFile {
 
+    @ApiParam("id")
     private int id;
 
-
+    @ApiParam("产权证号")
     private String uid;
 
     private String ownerName;

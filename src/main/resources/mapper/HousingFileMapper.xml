@@ -19,43 +19,81 @@
     </insert>
 
 
-    <select id="findId" parameterType="com.bnuz.filemanagement.model.HousingFile">
+    <select id="find" resultType="com.bnuz.filemanagement.model.HousingFile">
         select 
         <include refid="select"></include>
         from housing_file
         <where>
+
+            <if test="id !=null and id !=''">
+                 id = #{id}
+            </if>
+
             <if test="uid !=null and uid!=''">
-                name like concat('%',#{name},'%')
+                AND uid = #{uid}
+            </if>
+
+            <if test="ownerName !=null and ownerName !=''">
+                AND owner_name = #{ownerName}
+            </if>
+
+            <if test="gender !=null and gender !=''">
+                AND gender = #{gender}
             </if>
 
             <if test="idCard !=null and idCard !=''">
                 AND id_card = #{idCard}
             </if>
 
-            <if test="mateName !=null and mateName !=''">
-                AND mate_name like concat('%',#{mateName},'%')
+            <if test="phone !=null and phone != ''">
+                AND phone = #{phone}
             </if>
 
-            <if test="mateIdCard !=null and mateIdCard != ''">
-                AND mate_idcard = #{mateIdCard}
+            <if test="workingAddress !=null and workingAddress != ''">
+                AND working_address = #{workingAddress}
+            </if>
+
+            <if test="houseLocation !=null and houseLocation != ''">
+                AND house_location = #{houseLocation}
+            </if>
+
+            <if test="houseType !=null and houseType != ''">
+                AND house_type = #{houseType}
+            </if>
+
+            <if test="entryDate !=null and entryDate != ''">
+                AND entry_date = #{entryDate}
+            </if>
+
+            <if test="salesUnit !=null and salesUnit != ''">
+                AND sales_unit = #{salesUnit}
+            </if>
+
+            <if test="propertyTransition !=null and propertyTransition != ''">
+                AND property_transition = #{propertyTransition}
             </if>
         </where>
         
     </select>
 
     <!-- 修改个人住房档案数据-->
-    <update id="updateByUid" parameterType="com.bnuz.filemanagement.model.HousingFile">
+    <update id="update" parameterType="com.bnuz.filemanagement.model.HousingFile">
         update housing_file
         <set>
+            <if test="uid != null">uid = #{uid},</if>
+            <if test="ownerName != null">owner_name = #{ownerName},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="idCard != null">id_card = #{idCard},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="workingAddress != null">work_address = #{workingAddress},</if>
             <if test="houseArea != null">house_area = #{houseArea},</if>
             <if test="houseType != null">house_type = #{houseType},</if>
-            <if test="location != null">location = #{location},</if>
-            <if test="propertyRightData != null">property_right_data = #{propertyRightData},</if>
-            <if test="partToFull != null">part_to_full = #{partToFull},</if>
-            <if test="propertyRightRetract != null">property_right_retract = #{propertyRightRetract},</if>
-            <if test="ownerUnit != null">owner_unit = #{ownerUnit},</if>
+            <if test="houseLocation != null">house_location = #{houseLocation},</if>
+            <if test="entryDate != null">entry_date = #{entryDate},</if>
+            <if test="salesUnit != null">sales_unit = #{salesUnit},</if>
+            <if test="propertyTransition != null">property_transition = #{propertyTransition},</if>
         </set>
-        where uid = #{uid}
+        where id = #{id}
 
     </update>
     
