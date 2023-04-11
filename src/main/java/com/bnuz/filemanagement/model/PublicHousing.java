@@ -1,23 +1,35 @@
 package com.bnuz.filemanagement.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
+
 import java.util.Date;
 
+@ApiModel("个人购单位公房档案")
 public class PublicHousing {
 
+    @ApiParam("id")
     private  int id;
 
+    @ApiParam("产权证号")
     private  String uid;
 
+    @ApiParam("申请人姓名")
     private String applicantName;
 
+    @ApiParam("身份证号")
     private String idCard;
 
+    @ApiParam("工作单位")
     private String workingAddress;
 
+    @ApiParam("购房日期")
     private Date entryDate;
 
+    @ApiParam("售房单位")
     private String salesUnit;
 
+    @ApiParam("房屋类型")
     private String houseType;
 
 

@@ -1,6 +1,7 @@
 package com.bnuz.filemanagement.controller;
 
 
+import com.bnuz.filemanagement.common.Result;
 import com.bnuz.filemanagement.common.ResultCode;
 import com.bnuz.filemanagement.model.PublicHousing;
 import com.bnuz.filemanagement.service.PublicHousingService;

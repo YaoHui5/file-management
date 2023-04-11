@@ -1,18 +1,14 @@
 package com.bnuz.filemanagement.controller;
 
 import com.bnuz.filemanagement.common.ResultCode;
-import com.bnuz.filemanagement.controller.Result;
+import com.bnuz.filemanagement.common.Result;
 import com.bnuz.filemanagement.model.Applicant;
 import com.bnuz.filemanagement.service.ApplicantService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Api(tags = "申请人数据接口")
 @RestController

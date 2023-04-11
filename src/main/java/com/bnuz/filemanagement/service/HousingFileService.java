@@ -1,15 +1,17 @@
 package com.bnuz.filemanagement.service;
 
+import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.model.HousingFile;
-import com.bnuz.filemanagement.service.impl.HousingFileServiceImpl;
 
-import java.util.List;
+public interface HousingFileService extends BaseService<HousingFile> {
 
-public interface HousingFileService {
-
-    int addHousingFile(HousingFile housingFile);
-
-    HousingFile findId(HousingFile housingFile);
-
-    HousingFile updateByExample(HousingFile housingFile);
+//    int addHousingFile(HousingFile housingFile);
+//
+//    int deleteHousingFile(Serializable housingFile);
+//
+//    HousingFile findOne(HousingFile housingFile);
+//
+//    List<HousingFile> findAll(HousingFile housingFile);
+//
+//    int updateByExample(HousingFile housingFile);
 }

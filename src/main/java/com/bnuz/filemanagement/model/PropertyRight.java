@@ -1,25 +1,38 @@
 package com.bnuz.filemanagement.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
+
 import java.math.BigDecimal;
 
+@ApiModel("产权产籍数据")
 public class PropertyRight {
 
+    @ApiParam("id")
     private int id;
 
+    @ApiParam(value = "产权证号",required = true)
     private String uid;
 
+    @ApiParam("房屋面积")
     private BigDecimal houseArea;
 
+    @ApiParam("房屋类型")
     private String houseType;
 
+    @ApiParam("房屋坐落")
     private String location;
 
+    @ApiParam("部分产权转全部产权数据")
     private String partToFull;
 
+    @ApiParam("产权过渡数据")
     private String propertyRightData;
 
+    @ApiParam("返还公产数据")
     private String propertyRightRetract;
 
+    @ApiParam("原产权单位")
     private String ownerUnit;
 
     public String getOwnerUnit() {

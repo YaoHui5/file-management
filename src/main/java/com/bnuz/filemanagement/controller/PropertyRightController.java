@@ -1,9 +1,9 @@
 package com.bnuz.filemanagement.controller;
 
 
+import com.bnuz.filemanagement.common.Result;
 import com.bnuz.filemanagement.common.ResultCode;
 import com.bnuz.filemanagement.model.PropertyRight;
-import com.bnuz.filemanagement.model.ReformedHouse;
 import com.bnuz.filemanagement.service.PropertyRightService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

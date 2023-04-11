@@ -1,6 +1,4 @@
-package com.bnuz.filemanagement.controller;
-
-import com.bnuz.filemanagement.common.ResultCode;
+package com.bnuz.filemanagement.common;
 
 public class Result{
 

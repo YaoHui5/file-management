@@ -1,6 +1,7 @@
 package com.bnuz.filemanagement.model;
 
 
+import com.bnuz.filemanagement.common.BaseBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Component;
@@ -10,45 +11,43 @@ import java.util.Date;
 
 @ApiModel("个人住房档案")
 @Component
-public class HousingFile {
-
-    @ApiParam("id")
-    private int id;
+public class HousingFile extends BaseBean {
 
     @ApiParam("产权证号")
     private String uid;
 
+    @ApiParam("房主姓名")
     private String ownerName;
 
+    @ApiParam("性别")
     private short gender;
 
+    @ApiParam("身份证号")
     private String idCard;
 
+    @ApiParam("电话号码")
     private String phone;
 
-    private String houseLocation;
-
-    private BigDecimal houseArea;
-
-    private String houseType;
-
-    private Date entryDate;
-
-    private String salesUnit;
-
-    private String propertyTransition;
-
+    @ApiParam("工作单位")
     private String workingAddress;
 
+    @ApiParam("房屋坐落")
+    private String houseLocation;
 
+    @ApiParam("房屋面积")
+    private BigDecimal houseArea;
 
-    public int getId() {
-        return id;
-    }
+    @ApiParam("房屋类型")
+    private String houseType;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @ApiParam("购房日期")
+    private Date entryDate;
+
+    @ApiParam("售房单位")
+    private String salesUnit;
+
+    @ApiParam("产权过渡数据")
+    private String propertyTransition;
 
     public String getUid() {
         return uid;

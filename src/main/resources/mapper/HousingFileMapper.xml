@@ -76,6 +76,13 @@
         
     </select>
 
+    <select id="findById" resultType="com.bnuz.filemanagement.model.HousingFile">
+        select
+        <include refid="select"></include>
+        from housing_file
+        where id = #{id}
+    </select>
+
     <!-- 修改个人住房档案数据-->
     <update id="update" parameterType="com.bnuz.filemanagement.model.HousingFile">
         update housing_file
@@ -85,7 +92,7 @@
             <if test="gender != null">gender = #{gender},</if>
             <if test="idCard != null">id_card = #{idCard},</if>
             <if test="phone != null">phone = #{phone},</if>
-            <if test="workingAddress != null">work_address = #{workingAddress},</if>
+            <if test="workingAddress != null">working_address = #{workingAddress},</if>
             <if test="houseArea != null">house_area = #{houseArea},</if>
             <if test="houseType != null">house_type = #{houseType},</if>
             <if test="houseLocation != null">house_location = #{houseLocation},</if>

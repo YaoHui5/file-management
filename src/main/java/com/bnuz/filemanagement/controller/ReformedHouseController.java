@@ -1,13 +1,13 @@
 package com.bnuz.filemanagement.controller;
 
 
+import com.bnuz.filemanagement.common.Result;
 import com.bnuz.filemanagement.common.ResultCode;
 import com.bnuz.filemanagement.model.ReformedHouse;
 import com.bnuz.filemanagement.service.ReformedHouseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "单位公房房改简况数据接口")
@@ -31,14 +31,13 @@ public class ReformedHouseController {
     }
 
     @ApiOperation(value = "单位公房房改简况修改",notes = "根据产权证号Uid,修改一条公房房改简况信息")
-    @RequestMapping(value = "/update/{uid}",method = RequestMethod.GET)
-    public Result updateReformedHouseByUid(@PathVariable("uid")String uid,ReformedHouse reformedHouseDto, BindingResult bindingResult){
-        Result result;
+    @RequestMapping(value = "/update/{uid}",method = RequestMethod.POST)
+    public Result updateReformedHouseByUid(@PathVariable("uid")String uid,@RequestBody ReformedHouse reformedHouse){
 
-        int count = reformedHouseService.updateReformedHouseByUid(uid,reformedHouseDto);
+        int count = reformedHouseService.updateReformedHouseByUid(uid,reformedHouse);
 
         if(count == 1){
-            return Result.success(reformedHouseDto);
+            return Result.success(reformedHouse);
         }
         return Result.fail("操作失败");
     }

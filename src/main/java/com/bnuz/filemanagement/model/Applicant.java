@@ -2,26 +2,35 @@ package com.bnuz.filemanagement.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Component;
 
 @ApiModel("申请人")
 @Component
 public class Applicant {
+
+    @ApiParam("id")
     private int id;
 
-//    @ApiModelProperty("申请人姓名")
+    @ApiParam("申请人姓名")
     private String name;
 
+    @ApiParam("申请人身份证号")
     private String  idCard;
 
+    @ApiParam("申请人手机号")
     private String phone;
 
+    @ApiParam("申请人性别")
     private short gender;
 
+    @ApiParam("申请人工作单位")
     private String workingAddress;
 
+    @ApiParam("申请人配偶姓名")
     private String mateName;
 
+    @ApiParam("申请人配偶身份证号")
     private String mateIdCard;
 
 //    private String uid;
