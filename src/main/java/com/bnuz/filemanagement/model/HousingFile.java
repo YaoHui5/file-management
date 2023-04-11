@@ -19,7 +19,7 @@ public class HousingFile extends BaseBean {
     @ApiParam("房主姓名")
     private String ownerName;
 
-    @ApiParam("性别")
+    @ApiParam("性别:0代表男，1代表女")
     private short gender;
 
     @ApiParam("身份证号")
@@ -40,8 +40,8 @@ public class HousingFile extends BaseBean {
     @ApiParam("房屋类型")
     private String houseType;
 
-    @ApiParam("购房日期")
-    private Date entryDate;
+    @ApiParam("购房日期: yyyy-MM-dd")
+    private String entryDate;
 
     @ApiParam("售房单位")
     private String salesUnit;
@@ -105,11 +105,11 @@ public class HousingFile extends BaseBean {
         this.houseType = houseType;
     }
 
-    public Date getEntryDate() {
+    public String getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate) {
+    public void setEntryDate(String entryDate) {
         this.entryDate = entryDate;
     }
 

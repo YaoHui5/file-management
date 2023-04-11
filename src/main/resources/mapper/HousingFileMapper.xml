@@ -11,7 +11,7 @@
     </sql>
     
     <!-- 录入个人住房档案 -->
-    <insert id="add">
+    <insert id="insert">
         insert into housing_file(uid,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
                                  entry_date,sales_unit,property_transition)
         values (#{uid},#{ownerName},#{gender},#{idCard},#{phone},#{workingAddress},
@@ -19,7 +19,35 @@
     </insert>
 
 
-    <select id="find" resultType="com.bnuz.filemanagement.model.HousingFile">
+    <!-- 根据id删除个人住房档案数据 -->
+    <delete id="deleteById">
+        delete from housing_file where id=#{id};
+    </delete>
+
+
+    <!-- 修改个人住房档案数据-->
+    <update id="update" parameterType="com.bnuz.filemanagement.model.HousingFile">
+        update housing_file
+        <set>
+            <if test="uid != null">uid = #{uid},</if>
+            <if test="ownerName != null">owner_name = #{ownerName},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="idCard != null">id_card = #{idCard},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="workingAddress != null">working_address = #{workingAddress},</if>
+            <if test="houseArea != null">house_area = #{houseArea},</if>
+            <if test="houseType != null">house_type = #{houseType},</if>
+            <if test="houseLocation != null">house_location = #{houseLocation},</if>
+            <if test="entryDate != null">entry_date = #{entryDate},</if>
+            <if test="salesUnit != null">sales_unit = #{salesUnit},</if>
+            <if test="propertyTransition != null">property_transition = #{propertyTransition},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <!-- 条件查询个人住房档案数据-->
+    <select id="findOne" resultType="com.bnuz.filemanagement.model.HousingFile">
         select 
         <include refid="select"></include>
         from housing_file
@@ -73,8 +101,8 @@
                 AND property_transition = #{propertyTransition}
             </if>
         </where>
-        
     </select>
+
 
     <select id="findById" resultType="com.bnuz.filemanagement.model.HousingFile">
         select
@@ -83,29 +111,11 @@
         where id = #{id}
     </select>
 
-    <!-- 修改个人住房档案数据-->
-    <update id="update" parameterType="com.bnuz.filemanagement.model.HousingFile">
-        update housing_file
-        <set>
-            <if test="uid != null">uid = #{uid},</if>
-            <if test="ownerName != null">owner_name = #{ownerName},</if>
-            <if test="gender != null">gender = #{gender},</if>
-            <if test="idCard != null">id_card = #{idCard},</if>
-            <if test="phone != null">phone = #{phone},</if>
-            <if test="workingAddress != null">working_address = #{workingAddress},</if>
-            <if test="houseArea != null">house_area = #{houseArea},</if>
-            <if test="houseType != null">house_type = #{houseType},</if>
-            <if test="houseLocation != null">house_location = #{houseLocation},</if>
-            <if test="entryDate != null">entry_date = #{entryDate},</if>
-            <if test="salesUnit != null">sales_unit = #{salesUnit},</if>
-            <if test="propertyTransition != null">property_transition = #{propertyTransition},</if>
-        </set>
-        where id = #{id}
-
-    </update>
-    
-
-
+    <select id="findAll" resultType="com.bnuz.filemanagement.model.HousingFile">
+        select
+        <include refid="select"></include>
+        from housing_file
+    </select>
 
 
 

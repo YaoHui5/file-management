@@ -4,12 +4,95 @@
 
 <mapper namespace="com.bnuz.filemanagement.mapper.PublicHousingMapper">
 
-    <!-- 录入档案信息 -->
+    <sql id="select">
+        id,
+        uid,applicant_name,id_card,working_address,entry_date,sales_unit,house_type
+    </sql>
+
+
+    <!-- 录入个人购单位公房档案信息 -->
     <insert id="insert">
         insert into public_housing(uid,applicant_name,id_card,working_address,
                                   entry_date,sales_unit,house_type)
         values (#{uid},#{applicantName},#{idCard},#{workingAddress},#{entryDate},#{salesUnit},#{houseType});
     </insert>
+
+
+    <!-- 根据id删除个人购单位公房档案数据 -->
+    <delete id="deleteById">
+        delete from public_housing where id=#{id};
+    </delete>
+
+    <!-- 条件修改个人购单位公房档案数据-->
+    <update id="update" parameterType="com.bnuz.filemanagement.model.PublicHousing">
+        update public_housing
+        <set>
+            <if test="uid != null">uid = #{uid},</if>
+            <if test="applicantName != null">applicant_name = #{applicantName},</if>
+            <if test="idCard != null">id_card = #{idCard},</if>
+            <if test="workingAddress != null">working_address = #{workingAddress},</if>
+            <if test="entryDate != null">entry_date = #{entryDate},</if>
+            <if test="salesUnit != null">sales_unit = #{salesUnit},</if>
+            <if test="houseType != null">house_type = #{houseType},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 条件查询个人购单位公房档案数据-->
+    <select id="findOne" resultType="com.bnuz.filemanagement.model.PublicHousing">
+        select
+        <include refid="select"></include>
+        from public_housing
+        <where>
+
+            <if test="id !=null and id !=''">
+                id = #{id}
+            </if>
+
+            <if test="uid !=null and uid!=''">
+                AND uid = #{uid}
+            </if>
+
+            <if test="applicantName !=null and applicantName !=''">
+                AND applicant_name = #{applicantName}
+            </if>
+
+            <if test="idCard !=null and idCard !=''">
+                AND id_card = #{idCard}
+            </if>
+
+            <if test="workingAddress !=null and workingAddress !=''">
+                AND working_address = #{workingAddress}
+            </if>
+
+            <if test="entryDate !=null and entryDate != ''">
+                AND entry_date = #{entryDate}
+            </if>
+
+            <if test="salesUnit !=null and salesUnit != ''">
+                AND sales_unit = #{salesUnit}
+            </if>
+
+            <if test="houseType !=null and houseType != ''">
+                AND house_type = #{houseType}
+            </if>
+        </where>
+    </select>
+
+    <!-- id查询个人购单位公房档案数据-->
+    <select id="findById" resultType="com.bnuz.filemanagement.model.PublicHousing">
+        select
+        <include refid="select"></include>
+        from public_housing
+        where id = #{id}
+    </select>
+
+    <!-- 查询所有个人购单位公房档案数据-->
+    <select id="findAll" resultType="com.bnuz.filemanagement.model.PublicHousing">
+        select
+        <include refid="select"></include>
+        from public_housing
+    </select>
 
 
 </mapper>

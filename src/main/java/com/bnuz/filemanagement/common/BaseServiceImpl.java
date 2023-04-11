@@ -41,7 +41,7 @@ public abstract class BaseServiceImpl<T extends BaseBean,E extends BaseMapper<T>
         return e.findOne(t);
     }
 
-
+    @Override
     public T findById(Integer id){
         return e.findById(id);
     }

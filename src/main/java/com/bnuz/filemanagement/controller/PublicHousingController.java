@@ -1,6 +1,8 @@
 package com.bnuz.filemanagement.controller;
 
 
+import com.bnuz.filemanagement.common.BaseController;
+import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.common.Result;
 import com.bnuz.filemanagement.common.ResultCode;
 import com.bnuz.filemanagement.model.PublicHousing;
@@ -15,23 +17,28 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/publichousing")
 @ResponseBody
-public class PublicHousingController {
+public class PublicHousingController extends BaseController<PublicHousing> {
 
     @Autowired
     private PublicHousingService publicHousingService;
 
-
-    @ApiOperation(value = "个人购单位公房档案录入",notes = "插入个人购单位公房档案信息")
-    @RequestMapping(value = "/insert",method = RequestMethod.POST)
-    public Result insertPublicHousing(@RequestBody PublicHousing publicHousing){
-
-        int count = publicHousingService.insertPublicHousing(publicHousing);
-
-        if(count == 1){
-            return Result.success(publicHousing);
-        }
-        return Result.fail(ResultCode.FAILED.getCode(),ResultCode.FAILED.getMessage());
+    @Override
+    public BaseService<PublicHousing> getService(){
+        return publicHousingService;
     }
+
+
+//    @ApiOperation(value = "个人购单位公房档案录入",notes = "插入个人购单位公房档案信息")
+//    @RequestMapping(value = "/insert",method = RequestMethod.POST)
+//    public Result insertPublicHousing(@RequestBody PublicHousing publicHousing){
+//
+//        int count = publicHousingService.insertPublicHousing(publicHousing);
+//
+//        if(count == 1){
+//            return Result.success(publicHousing);
+//        }
+//        return Result.fail(ResultCode.FAILED.getCode(),ResultCode.FAILED.getMessage());
+//    }
 
 
 }

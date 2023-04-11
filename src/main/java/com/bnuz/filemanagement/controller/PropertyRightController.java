@@ -1,6 +1,8 @@
 package com.bnuz.filemanagement.controller;
 
 
+import com.bnuz.filemanagement.common.BaseController;
+import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.common.Result;
 import com.bnuz.filemanagement.common.ResultCode;
 import com.bnuz.filemanagement.model.PropertyRight;
@@ -15,36 +17,41 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/propertyright")
 @ResponseBody
-public class PropertyRightController {
+public class PropertyRightController extends BaseController<PropertyRight> {
 
     @Autowired
     private PropertyRightService propertyRightService;
 
-    @ApiOperation(value = "产权产籍数据录入",notes = "插入一条产权产籍信息")
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public Result addPropertyRight(@RequestBody PropertyRight propertyRight){
-        int count = propertyRightService.addPropertyRight(propertyRight);
-
-        if(count == 1){
-            return Result.success(propertyRight);
-        }
-        return Result.fail(ResultCode.FAILED.getCode(), ResultCode.FAILED.getMessage());
+    @Override
+    public BaseService<PropertyRight> getService(){
+        return propertyRightService;
     }
 
-
-
-    @ApiOperation(value = "产权产籍修改",notes = "根据条件修改产权产籍中部分产权转全部产权数据以及原产权单位收回房改房数据")
-    @RequestMapping(value = "/update/{uid}",method = RequestMethod.GET)
-    public Result updatePropertyRightByUid(@PathVariable("uid")String uid, PropertyRight propertyRightDto, BindingResult bindingResult){
-        Result result;
-
-        int count = propertyRightService.updatePropertyRightByUid(uid,propertyRightDto);
-
-        if(count == 1){
-            return Result.success(propertyRightDto);
-        }
-        return Result.fail("操作失败");
-    }
+//    @ApiOperation(value = "产权产籍数据录入",notes = "插入一条产权产籍信息")
+//    @RequestMapping(value = "/add",method = RequestMethod.POST)
+//    public Result addPropertyRight(@RequestBody PropertyRight propertyRight){
+//        int count = propertyRightService.addPropertyRight(propertyRight);
+//
+//        if(count == 1){
+//            return Result.success(propertyRight);
+//        }
+//        return Result.fail(ResultCode.FAILED.getCode(), ResultCode.FAILED.getMessage());
+//    }
+//
+//
+//
+//    @ApiOperation(value = "产权产籍修改",notes = "根据条件修改产权产籍中部分产权转全部产权数据以及原产权单位收回房改房数据")
+//    @RequestMapping(value = "/update/{uid}",method = RequestMethod.GET)
+//    public Result updatePropertyRightByUid(@PathVariable("uid")String uid, PropertyRight propertyRightDto, BindingResult bindingResult){
+//        Result result;
+//
+//        int count = propertyRightService.updatePropertyRightByUid(uid,propertyRightDto);
+//
+//        if(count == 1){
+//            return Result.success(propertyRightDto);
+//        }
+//        return Result.fail("操作失败");
+//    }
 
 
 }

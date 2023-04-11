@@ -1,17 +1,18 @@
 package com.bnuz.filemanagement.model;
 
+import com.bnuz.filemanagement.common.BaseBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiParam;
 
 import java.math.BigDecimal;
 
 @ApiModel("产权产籍数据")
-public class PropertyRight {
+public class PropertyRight extends BaseBean {
 
     @ApiParam("id")
     private int id;
 
-    @ApiParam(value = "产权证号",required = true)
+    @ApiParam(value = "产权证号")
     private String uid;
 
     @ApiParam("房屋面积")

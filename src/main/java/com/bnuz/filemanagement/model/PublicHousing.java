@@ -1,12 +1,13 @@
 package com.bnuz.filemanagement.model;
 
+import com.bnuz.filemanagement.common.BaseBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiParam;
 
 import java.util.Date;
 
 @ApiModel("个人购单位公房档案")
-public class PublicHousing {
+public class PublicHousing extends BaseBean {
 
     @ApiParam("id")
     private  int id;

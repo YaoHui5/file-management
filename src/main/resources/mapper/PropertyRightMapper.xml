@@ -4,8 +4,13 @@
 
 <mapper namespace="com.bnuz.filemanagement.mapper.PropertyRightMapper">
 
+    <sql id="select">
+        id,
+        uid,house_area,house_type,location,part_to_full,property_right_data,property_right_retract,owner_unit
+    </sql>
+
     <!-- 录入产权产籍数据 -->
-    <insert id="add">
+    <insert id="insert">
         insert into property_right(uid,house_area,house_type,location,part_to_full,
                                    property_right_data,property_right_retract,owner_unit)
         values (#{uid},#{houseArea},#{houseType},#{location},#{partToFull},
@@ -13,10 +18,17 @@
     </insert>
 
 
-    <!-- 修改产权产籍数据-->
-    <update id="updateByUid" parameterType="com.bnuz.filemanagement.model.PropertyRight">
+    <!-- 根据id删除产权产籍数据 -->
+    <delete id="deleteById">
+        delete from property_right where id=#{id};
+    </delete>
+
+
+    <!-- 条件修改产权产籍数据-->
+    <update id="update" parameterType="com.bnuz.filemanagement.model.PropertyRight">
         update property_right
         <set>
+            <if test="uid != null">uid = #{uid},</if>
             <if test="houseArea != null">house_area = #{houseArea},</if>
             <if test="houseType != null">house_type = #{houseType},</if>
             <if test="location != null">location = #{location},</if>
@@ -25,10 +37,68 @@
             <if test="propertyRightRetract != null">property_right_retract = #{propertyRightRetract},</if>
             <if test="ownerUnit != null">owner_unit = #{ownerUnit},</if>
         </set>
-        where uid = #{uid}
-
+        where id = #{id}
     </update>
 
+    <!-- 条件查询产权产籍数据-->
+    <select id="findOne" resultType="com.bnuz.filemanagement.model.PropertyRight">
+        select
+        <include refid="select"></include>
+        from property_right
+        <where>
 
+            <if test="id !=null and id !=''">
+                id = #{id}
+            </if>
+
+            <if test="uid !=null and uid!=''">
+                AND uid = #{uid}
+            </if>
+
+            <if test="houseArea !=null and houseArea !=''">
+                AND house_area = #{houseArea}
+            </if>
+
+            <if test="houseType !=null and houseType !=''">
+                AND house_type = #{houseType}
+            </if>
+
+            <if test="location !=null and location !=''">
+                AND location = #{location}
+            </if>
+
+            <if test="partToFull !=null and partToFull != ''">
+                AND part_to_full = #{partToFull}
+            </if>
+
+            <if test="propertyRightData !=null and propertyRightData != ''">
+                AND property_right_data = #{propertyRightData}
+            </if>
+
+            <if test="propertyRightRetract !=null and propertyRightRetract != ''">
+                AND house_location = #{houseLocation}
+            </if>
+
+            <if test="ownerUnit !=null and ownerUnit != ''">
+                AND owner_unit = #{ownerUnit}
+            </if>
+        </where>
+    </select>
+
+
+    <!-- id查询产权产籍数据-->
+    <select id="findById" resultType="com.bnuz.filemanagement.model.PropertyRight">
+        select
+        <include refid="select"></include>
+        from property_right
+        where id = #{id}
+    </select>
+
+    <!-- 查询全部产权产籍数据-->
+    <select id="findAll" resultType="com.bnuz.filemanagement.model.PropertyRight">
+        select
+        <include refid="select"></include>
+        from property_right
+    </select>
 
 </mapper>

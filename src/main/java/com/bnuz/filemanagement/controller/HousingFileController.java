@@ -2,21 +2,25 @@ package com.bnuz.filemanagement.controller;
 
 
 import com.bnuz.filemanagement.common.BaseController;
-import com.bnuz.filemanagement.common.Result;
-import com.bnuz.filemanagement.common.ResultCode;
+import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.model.HousingFile;
 import com.bnuz.filemanagement.service.HousingFileService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "个人住房档案数据接口")
 @RestController
 @RequestMapping("/housingfile")
-@ResponseBody
-public class HousingFileController extends BaseController<HousingFile,HousingFileService> {
+public class HousingFileController extends BaseController<HousingFile> {
+
+    @Autowired
+    private HousingFileService housingFileService;
+
+    @Override
+    public BaseService<HousingFile> getService() {
+        return housingFileService;
+    }
 
 //    @Autowired
 //    private HousingFileService housingFileService;

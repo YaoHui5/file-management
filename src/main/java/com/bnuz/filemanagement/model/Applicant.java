@@ -1,5 +1,6 @@
 package com.bnuz.filemanagement.model;
 
+import com.bnuz.filemanagement.common.BaseBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @ApiModel("申请人")
 @Component
-public class Applicant {
+public class Applicant extends BaseBean {
 
     @ApiParam("id")
     private int id;
