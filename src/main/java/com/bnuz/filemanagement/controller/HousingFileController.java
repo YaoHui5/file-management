@@ -4,6 +4,7 @@ package com.bnuz.filemanagement.controller;
 import com.bnuz.filemanagement.common.BaseController;
 import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.model.HousingFile;
+import com.bnuz.filemanagement.service.ApplicantService;
 import com.bnuz.filemanagement.service.HousingFileService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,14 @@ public class HousingFileController extends BaseController<HousingFile> {
 
     @Autowired
     private HousingFileService housingFileService;
+
+    @Autowired
+    private ApplicantService applicantService;
+
+
+
+
+
 
     @Override
     public BaseService<HousingFile> getService() {

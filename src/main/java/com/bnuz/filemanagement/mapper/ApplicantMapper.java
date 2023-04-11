@@ -11,6 +11,9 @@ import java.util.List;
 
 @Mapper
 public interface ApplicantMapper extends BaseMapper<Applicant> {
+
+    public List<Applicant> findByFuzzyName(Applicant applicant);
+
 //    public int add(Applicant applicant);
 //
 //    public int deleteById(int id);

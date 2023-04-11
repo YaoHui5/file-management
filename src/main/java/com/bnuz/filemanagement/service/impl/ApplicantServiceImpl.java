@@ -15,6 +15,13 @@ public class ApplicantServiceImpl extends BaseServiceImpl<Applicant,ApplicantMap
 
     @Autowired
     private ApplicantMapper applicantMapper;
+
+    @Override
+    public List<Applicant> findByFuzzyName(Applicant applicant){
+        return applicantMapper.findByFuzzyName(applicant);
+    }
+
+
 //
 //    @Override
 //    public List<Applicant> getAll(){

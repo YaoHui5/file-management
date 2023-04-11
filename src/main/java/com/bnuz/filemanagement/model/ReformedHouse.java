@@ -1,5 +1,6 @@
 package com.bnuz.filemanagement.model;
 
+import com.bnuz.filemanagement.common.BaseBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiParam;
 
@@ -7,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @ApiModel("单位公房房改简况")
-public class ReformedHouse {
+public class ReformedHouse extends BaseBean {
 
     @ApiParam("id")
     private int id;
