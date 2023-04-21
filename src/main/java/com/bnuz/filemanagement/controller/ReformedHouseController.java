@@ -1,6 +1,7 @@
 package com.bnuz.filemanagement.controller;
 
 
+import com.bnuz.filemanagement.annotation.UserLoginToken;
 import com.bnuz.filemanagement.common.BaseController;
 import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.common.Result;
@@ -11,6 +12,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @Api(tags = "单位公房房改简况数据接口")
 @RestController
@@ -24,6 +27,12 @@ public class ReformedHouseController extends BaseController<ReformedHouse> {
     @Override
     public BaseService<ReformedHouse> getService(){
         return reformedHouseService;
+    }
+
+    @ApiOperation(value = "按时间统计各单位房改情况",notes = "按时间，按各单位")
+    @GetMapping("/count/{date}")
+    public Result countByDate(@PathVariable("date") String reformedDate){
+        return Result.success(reformedHouseService.countByDate(reformedDate));
     }
 
 //    @ApiOperation(value = "单位公房房改简况录入",notes = "插入一条公房房改简况")

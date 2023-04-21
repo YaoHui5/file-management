@@ -5,15 +5,20 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiParam;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @ApiModel("产权产籍数据")
 public class PropertyRight extends BaseBean {
 
-    @ApiParam("id")
-    private int id;
-
     @ApiParam(value = "产权证号")
-    private String uid;
+    private String houseId;
+
+    @ApiParam("产权人姓名")
+    private String ownerName;
+
+    @ApiParam("原产权单位")
+    private String originalUnit;
+
 
     @ApiParam("房屋面积")
     private BigDecimal houseArea;
@@ -27,37 +32,23 @@ public class PropertyRight extends BaseBean {
     @ApiParam("部分产权转全部产权数据")
     private String partToFull;
 
-    @ApiParam("产权过渡数据")
-    private String propertyRightData;
+//    @ApiParam("产权过渡数据")
+//    private String propertyRightData;
 
     @ApiParam("返还公产数据")
     private String propertyRightRetract;
 
-    @ApiParam("原产权单位")
-    private String ownerUnit;
+    @ApiParam("产权证日期: yyyy-MM-dd")
+    private String property_right_date;
 
-    public String getOwnerUnit() {
-        return ownerUnit;
+
+
+    public String getHouseId() {
+        return houseId;
     }
 
-    public void setOwnerUnit(String ownerUnit) {
-        this.ownerUnit = ownerUnit;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setHouseId(String houseId) {
+        this.houseId = houseId;
     }
 
     public BigDecimal getHouseArea() {
@@ -92,14 +83,6 @@ public class PropertyRight extends BaseBean {
         this.partToFull = partToFull;
     }
 
-    public String getPropertyRightData() {
-        return propertyRightData;
-    }
-
-    public void setPropertyRightData(String propertyRightData) {
-        this.propertyRightData = propertyRightData;
-    }
-
     public String getPropertyRightRetract() {
         return propertyRightRetract;
     }
@@ -108,5 +91,27 @@ public class PropertyRight extends BaseBean {
         this.propertyRightRetract = propertyRightRetract;
     }
 
+    public String getOwnerName() {
+        return ownerName;
+    }
 
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getOriginalUnit() {
+        return originalUnit;
+    }
+
+    public void setOriginalUnit(String originalUnit) {
+        this.originalUnit = originalUnit;
+    }
+
+    public String getProperty_right_date() {
+        return property_right_date;
+    }
+
+    public void setProperty_right_date(String property_right_date) {
+        this.property_right_date = property_right_date;
+    }
 }

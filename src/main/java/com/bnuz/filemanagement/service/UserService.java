@@ -1,18 +1,31 @@
 package com.bnuz.filemanagement.service;
 
+import com.bnuz.filemanagement.common.BaseService;
+import com.bnuz.filemanagement.mapper.UserMapper;
 import com.bnuz.filemanagement.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends BaseService<User> {
 
-    public boolean insert(User user);
+    User findByUsername(User user);
 
-//    public User findUserByUid(int uid);
+
 //
-//    public List<User> findAll();
+//     void deleteById(int id);
+//
+//     User findOne(User user);
+//
+//     User findById(Integer id);
+//
+//     List<User> findAll(User user);
 
-    public int register(User user);
+//     void add(User user);
+//
+//     User login(String username,String password);
+//
+//     User findByUserName(String username);
 
-    public User login(User user);
+
 }

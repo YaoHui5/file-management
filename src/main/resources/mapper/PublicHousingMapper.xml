@@ -4,6 +4,17 @@
 
 <mapper namespace="com.bnuz.filemanagement.mapper.PublicHousingMapper">
 
+    <resultMap id="resultMap" type="com.bnuz.filemanagement.model.PublicHousing">
+        <result column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="applicant_name" property="applicantName"/>
+        <result column="id_card" property="idCard"/>
+        <result column="working_address" property="workingAddress"/>
+        <result column="entry_date" property="entryDate"/>
+        <result column="sales_unit" property="salesUnit"/>
+        <result column="house_type" property="houseType"/>
+    </resultMap>
+
     <sql id="select">
         id,
         uid,applicant_name,id_card,working_address,entry_date,sales_unit,house_type
@@ -39,7 +50,7 @@
     </update>
 
     <!-- 条件查询个人购单位公房档案数据-->
-    <select id="findOne" resultType="com.bnuz.filemanagement.model.PublicHousing">
+    <select id="findOne" resultMap="resultMap">
         select
         <include refid="select"></include>
         from public_housing
@@ -88,7 +99,7 @@
     </select>
 
     <!-- 查询所有个人购单位公房档案数据-->
-    <select id="findAll" resultType="com.bnuz.filemanagement.model.PublicHousing">
+    <select id="findAll" resultMap="resultMap">
         select
         <include refid="select"></include>
         from public_housing

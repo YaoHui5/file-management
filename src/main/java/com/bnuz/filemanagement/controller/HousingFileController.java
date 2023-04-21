@@ -18,12 +18,8 @@ public class HousingFileController extends BaseController<HousingFile> {
     @Autowired
     private HousingFileService housingFileService;
 
-    @Autowired
-    private ApplicantService applicantService;
-
-
-
-
+//    @Autowired
+//    private ApplicantService applicantService;
 
 
     @Override

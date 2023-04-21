@@ -14,7 +14,7 @@ import java.util.Date;
 public class HousingFile extends BaseBean {
 
     @ApiParam("产权证号")
-    private String uid;
+    private String houseId;
 
     @ApiParam("房主姓名")
     private String ownerName;
@@ -46,15 +46,20 @@ public class HousingFile extends BaseBean {
     @ApiParam("售房单位")
     private String salesUnit;
 
-    @ApiParam("产权过渡数据")
-    private String propertyTransition;
+//    @ApiParam("产权过渡数据")
+//    private String propertyTransition;
 
-    public String getUid() {
-        return uid;
+
+    //多对一
+//    private Applicant applicant = new Applicant();
+
+
+    public String getHouseId() {
+        return houseId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setHouseId(String houseId) {
+        this.houseId = houseId;
     }
 
     public String getOwnerName() {
@@ -119,14 +124,6 @@ public class HousingFile extends BaseBean {
 
     public void setSalesUnit(String salesUnit) {
         this.salesUnit = salesUnit;
-    }
-
-    public String getPropertyTransition() {
-        return propertyTransition;
-    }
-
-    public void setPropertyTransition(String propertyTransition) {
-        this.propertyTransition = propertyTransition;
     }
 
     public String getWorkingAddress() {

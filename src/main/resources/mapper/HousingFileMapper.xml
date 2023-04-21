@@ -4,6 +4,23 @@
 
 <mapper namespace="com.bnuz.filemanagement.mapper.HousingFileMapper">
 
+    <resultMap id="resultMap" type="com.bnuz.filemanagement.model.HousingFile">
+        <result column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="owner_name" property="ownerName"/>
+        <result column="gender" property="gender"/>
+        <result column="id_card" property="idCard"/>
+        <result column="phone" property="phone"/>
+        <result column="working_address" property="workingAddress"/>
+        <result column="house_location" property="houseLocation"/>
+        <result column="house_area" property="houseArea"/>
+        <result column="house_type" property="houseType"/>
+        <result column="entry_date" property="entryDate"/>
+        <result column="sales_unit" property="salesUnit"/>
+        <result column="property_transition" property="propertyTransition"/>
+    </resultMap>
+
+
     <sql id="select">
         id,
         uid,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
@@ -47,7 +64,7 @@
 
 
     <!-- 条件查询个人住房档案数据-->
-    <select id="findOne" resultType="com.bnuz.filemanagement.model.HousingFile">
+    <select id="findOne" resultMap="resultMap">
         select 
         <include refid="select"></include>
         from housing_file
@@ -111,7 +128,7 @@
         where id = #{id}
     </select>
 
-    <select id="findAll" resultType="com.bnuz.filemanagement.model.HousingFile">
+    <select id="findAll" resultMap="resultMap">
         select
         <include refid="select"></include>
         from housing_file

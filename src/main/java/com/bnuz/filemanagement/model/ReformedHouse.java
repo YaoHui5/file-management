@@ -1,6 +1,7 @@
 package com.bnuz.filemanagement.model;
 
 import com.bnuz.filemanagement.common.BaseBean;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiParam;
 
@@ -10,60 +11,62 @@ import java.util.Date;
 @ApiModel("单位公房房改简况")
 public class ReformedHouse extends BaseBean {
 
-    @ApiParam("id")
-    private int id;
+    @ApiParam("原产权单位")
+    private String originalUnit;
 
     @ApiParam("房产证号")
-    private String uid;     //房产证号
+    private String houseId;
 
-    @ApiParam("房产单位")
-    private String realtyName;      //房产单位
+    @ApiParam("售房单位")
+    private String salesUnit;
 
     @ApiParam("房屋坐落")
-    private String houseLocation;   //房屋座落
+    private String houseLocation;
 
     @ApiParam("房屋面积")
-    private BigDecimal houseArea;   //面积
+    private BigDecimal houseArea;
 
     @ApiParam("房屋类型")
-    private String houseType;   //房改类型
+    private String houseType;
 
     @ApiParam("房屋售价")
-    private BigDecimal housePrice;  //售价
+    private BigDecimal housePrice;
 
     @ApiParam("房屋成本")
-    private BigDecimal houseCost;   //成本
+    private BigDecimal houseCost;
 
-    @ApiParam("房改日期")
-    private Date reformedDate;      //房改日期
+    @ApiParam("房改日期: yyyy-MM-dd")
+    private String reformedDate;
 
-    @ApiParam("是否超出标准数据")
-    private Boolean outStandard;    //是否超出标准数据
+    @ApiParam("是否超出标准数据：0代表未超出，1代表已超出")
+    private short outStandard;
+
+    @ApiParam("产权过渡数据")
+    private String propertyTransitionData;
 
 
-
-    public int getId() {
-        return id;
+    public String getOriginalUnit() {
+        return originalUnit;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOriginalUnit(String originalUnit) {
+        this.originalUnit = originalUnit;
     }
 
-    public String getUid() {
-        return uid;
+    public String getHouseId() {
+        return houseId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setHouseId(String houseId) {
+        this.houseId = houseId;
     }
 
-    public String getRealtyName() {
-        return realtyName;
+    public String getSalesUnit() {
+        return salesUnit;
     }
 
-    public void setRealtyName(String realtyName) {
-        this.realtyName = realtyName;
+    public void setSalesUnit(String salesUnit) {
+        this.salesUnit = salesUnit;
     }
 
     public String getHouseLocation() {
@@ -106,24 +109,27 @@ public class ReformedHouse extends BaseBean {
         this.houseCost = houseCost;
     }
 
-    public Date getReformedDate() {
+    public String getReformedDate() {
         return reformedDate;
     }
 
-    public void setReformedDate(Date reformedDate) {
+    public void setReformedDate(String reformedDate) {
         this.reformedDate = reformedDate;
     }
 
-    public Boolean getOutStandard() {
+    public short getOutStandard() {
         return outStandard;
     }
 
-    public void setOutStandard(Boolean outStandard) {
+    public void setOutStandard(short outStandard) {
         this.outStandard = outStandard;
     }
 
+    public String getPropertyTransitionData() {
+        return propertyTransitionData;
+    }
 
-
-
-
+    public void setPropertyTransitionData(String propertyTransitionData) {
+        this.propertyTransitionData = propertyTransitionData;
+    }
 }

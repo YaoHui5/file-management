@@ -3,6 +3,7 @@ package com.bnuz.filemanagement.mapper;
 import com.bnuz.filemanagement.common.BaseMapper;
 import com.bnuz.filemanagement.model.Applicant;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.xml.ws.ResponseWrapper;
@@ -12,7 +13,9 @@ import java.util.List;
 @Mapper
 public interface ApplicantMapper extends BaseMapper<Applicant> {
 
-    public List<Applicant> findByFuzzyName(Applicant applicant);
+//    public List<Applicant> findByFuzzyName(Applicant applicant);
+
+//    public Applicant selectByIdCardForHousingFile(@Param("id_card")String idCard);
 
 //    public int add(Applicant applicant);
 //

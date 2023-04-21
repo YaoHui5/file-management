@@ -3,29 +3,86 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bnuz.filemanagement.mapper.UserMapper">
-    <!-- 添加用户 -->
-    <insert id="insertUser" parameterType="com.bnuz.filemanagement.model.User">
-        insert into user(username,password)values(#{username},#{password});
-    </insert>
 
-    <!-- 查询所有用户信息 -->
-<!--    <select id="selectAll" resultType="com.bnuz.filemanagement.model.User">-->
-<!--        select *from user;-->
-<!--    </select>-->
+    <sql id="select">
+        id,
+        username,password
+    </sql>
 
-    <!-- 根据用户id查询信息 -->
-<!--    <select id="selectUserByUid" resultType="com.bnuz.filemanagement.model.User">-->
-<!--        select id,username,password from user where id=#{uid}-->
-<!--    </select>-->
+    <resultMap id="resultMap" type="com.bnuz.filemanagement.model.User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
 
-    <!-- 用户注册 -->
-    <insert id="register">
-        insert into user (username,password) values (#{username},#{password});
+    <!-- 注册/添加用户 -->
+    <insert id="insert">
+        insert into user(username,password)
+        values (#{username},#{password});
     </insert>
 
     <!-- 用户登录 -->
     <select id="login" resultType="com.bnuz.filemanagement.model.User">
         select id,username,password from user where username=#{username} and password=#{password};
+    </select>
+
+    <!-- 根据id删除用户 -->
+    <delete id="deleteById">
+        delete from user where id=#{id};
+    </delete>
+
+    <!-- 更新用户 -->
+    <update id="update" parameterType="com.bnuz.filemanagement.model.User">
+        update user
+        <set>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <!-- 条件查询一个用户信息-->
+    <select id="findOne" resultMap="resultMap">
+        select
+        <include refid="select"></include>
+        from user
+        <where>
+            <if test="id !=null and id !=''">
+                id = #{id}
+            </if>
+
+            <if test="username !=null and username!=''">
+                AND username = #{username}
+            </if>
+
+            <if test="password !=null and password !=''">
+                AND password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <!-- 查询所有用户-->
+    <select id="findAll" resultMap="resultMap">
+        select
+        <include refid="select"></include>
+        from user
+    </select>
+
+    <!-- 根据id查询用户-->
+    <select id="findById" resultType="com.bnuz.filemanagement.model.User">
+        select
+        <include refid="select"></include>
+        from user
+        where id = #{id}
+    </select>
+
+
+    <select id="findByUsername" resultType="com.bnuz.filemanagement.model.User">
+        select
+        <include refid="select"></include>
+        from user
+        where username = #{username}
     </select>
 
 </mapper>

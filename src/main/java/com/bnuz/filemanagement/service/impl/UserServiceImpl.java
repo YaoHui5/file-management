@@ -1,6 +1,8 @@
 package com.bnuz.filemanagement.service.impl;
 
 
+import com.bnuz.filemanagement.common.BaseService;
+import com.bnuz.filemanagement.common.BaseServiceImpl;
 import com.bnuz.filemanagement.mapper.UserMapper;
 import com.bnuz.filemanagement.model.User;
 import com.bnuz.filemanagement.service.UserService;
@@ -10,42 +12,35 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User,UserMapper> implements UserService{
+
 
     @Autowired
     private UserMapper userMapper;
 
-
-    @Override
-    public boolean insert(User user){
-        try {
-            userMapper.insertUser(user);
-            return true;
-        }catch (Exception e){
-            return false;
-        }
+    public User findByUsername(User user){
+        return userMapper.findByUsername(user.getUsername());
     }
 
-//    @Override
-//    public User findUserByUid(int uid){
-//        return userMapper.selectUserByUid(uid);
+
+//    public User login(String username,String password){
+//        User user = getMapper().findByUserName(username);
+//        if(user == null || !user.getPassword().equals(password)){
+//            return null;
+//        }else{
+//            Role role = roleMapper.findById(user.getRole().getId());
+//            user.setRole(role);
+//            return user;
+//        }
 //    }
 //
-//    @Override
-//    public List<User> findAll(){
-//        return userMapper.selectAll();
+//    public void register(User user){
+//        getMapper().insert(user);
 //    }
-
-    @Override
-    public int register(User user){
-        return userMapper.register(user);
-    }
-
-    @Override
-    public User login(User user){
-        return userMapper.login(user);
-    }
-
+//
+//    public User findByUserName(String username){
+//        return getMapper().findByUserName(username);
+//    }
 
 
 }

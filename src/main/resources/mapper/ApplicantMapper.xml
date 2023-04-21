@@ -19,6 +19,11 @@
         name,id_card,phone,gender,mate_name,mate_idcard,working_address
     </sql>
 
+    <sql id="selectByIdCard">
+        a.id,a.name,a.idCard,a.phone,a.gender,a.mateName,a.mateIdCard,a.workingAddress,
+        h.id,h.uid,h.ownerName,h.gender,h.idCard,h.phone,h.workingAddress,h.houseLocation,h.houseArea,h.houseType,h.entryDate,h.salesUnit,h.propertyTransition
+    </sql>
+
 
     <!-- 添加申请人 -->
     <insert id="insert" parameterType="com.bnuz.filemanagement.model.Applicant">
@@ -48,18 +53,18 @@
     </update>
 
     <!-- 根据条件模糊查询申请人信息 -->
-    <select id="findByFuzzyName" resultMap="resultMap">
-        select *from applicant
-        <where>
-            <if test="name !=null and name!=''">
-                name like concat('%',#{name},'%')
-            </if>
+<!--    <select id="findByFuzzyName" resultMap="resultMap">-->
+<!--        select *from applicant-->
+<!--        <where>-->
+<!--            <if test="name !=null and name!=''">-->
+<!--                name like concat('%',#{name},'%')-->
+<!--            </if>-->
 
-            <if test="mateName !=null and mateName !=''">
-                AND mate_name like concat('%',#{mateName},'%')
-            </if>
-        </where>
-    </select>
+<!--            <if test="mateName !=null and mateName !=''">-->
+<!--                AND mate_name like concat('%',#{mateName},'%')-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
 
 
     <!-- 条件查询申请人档案数据-->

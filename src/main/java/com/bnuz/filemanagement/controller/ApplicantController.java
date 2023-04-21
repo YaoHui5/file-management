@@ -25,11 +25,11 @@ public class ApplicantController extends BaseController<Applicant> {
         return applicantService;
     }
 
-    @ApiOperation(value = "条件查询/模糊查询申请人信息",notes = "根据申请人姓名/配偶姓名模糊查询申请人信息")
-    @RequestMapping(value = "/findByFuzzyName",method = RequestMethod.GET)
-    public Result findByFuzzyName(Applicant applicant){
-        return Result.success(applicantService.findByFuzzyName(applicant));
-    }
+//    @ApiOperation(value = "条件查询/模糊查询申请人信息",notes = "根据申请人姓名/配偶姓名模糊查询申请人信息")
+//    @RequestMapping(value = "/findByFuzzyName",method = RequestMethod.GET)
+//    public Result findByFuzzyName(Applicant applicant){
+//        return Result.success(applicantService.findByFuzzyName(applicant));
+//    }
 
 //    @ApiOperation(value = "获取所有申请人列表",notes="获取所有申请人的信息")
 ////    @GetMapping("/list")

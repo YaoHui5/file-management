@@ -4,16 +4,14 @@ import com.bnuz.filemanagement.common.BaseBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiParam;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @ApiModel("个人购单位公房档案")
 public class PublicHousing extends BaseBean {
 
-    @ApiParam("id")
-    private  int id;
-
     @ApiParam("产权证号")
-    private  String uid;
+    private  String houseId;
 
     @ApiParam("申请人姓名")
     private String applicantName;
@@ -24,8 +22,8 @@ public class PublicHousing extends BaseBean {
     @ApiParam("工作单位")
     private String workingAddress;
 
-    @ApiParam("购房日期")
-    private Date entryDate;
+    @ApiParam("购单位公房日期: yyyy-MM-dd")
+    private String entryDate;
 
     @ApiParam("售房单位")
     private String salesUnit;
@@ -33,22 +31,20 @@ public class PublicHousing extends BaseBean {
     @ApiParam("房屋类型")
     private String houseType;
 
+    @ApiParam("购房价格")
+    private BigDecimal housePrice;
+
+    @ApiParam("产权过渡状态：0代表未完成，1代表已完成")
+    private short propertyTransitionStatus;
 
 
-    public int getId() {
-        return id;
+
+    public String getHouseId() {
+        return houseId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setHouseId(String houseId) {
+        this.houseId = houseId;
     }
 
     public String getApplicantName() {
@@ -75,11 +71,11 @@ public class PublicHousing extends BaseBean {
         this.workingAddress = workingAddress;
     }
 
-    public Date getEntryDate() {
+    public String getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate) {
+    public void setEntryDate(String entryDate) {
         this.entryDate = entryDate;
     }
 
@@ -99,5 +95,19 @@ public class PublicHousing extends BaseBean {
         this.houseType = houseType;
     }
 
+    public BigDecimal getHousePrice() {
+        return housePrice;
+    }
 
+    public void setHousePrice(BigDecimal housePrice) {
+        this.housePrice = housePrice;
+    }
+
+    public short getPropertyTransitionStatus() {
+        return propertyTransitionStatus;
+    }
+
+    public void setPropertyTransitionStatus(short propertyTransitionStatus) {
+        this.propertyTransitionStatus = propertyTransitionStatus;
+    }
 }

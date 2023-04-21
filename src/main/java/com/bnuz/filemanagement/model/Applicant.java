@@ -6,12 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ApiModel("申请人")
 @Component
 public class Applicant extends BaseBean {
-
-    @ApiParam("id")
-    private int id;
 
     @ApiParam("申请人姓名")
     private String name;
@@ -22,7 +22,7 @@ public class Applicant extends BaseBean {
     @ApiParam("申请人手机号")
     private String phone;
 
-    @ApiParam("申请人性别")
+    @ApiParam("申请人性别：0代表男生，1代表女生")
     private short gender;
 
     @ApiParam("申请人工作单位")
@@ -33,6 +33,10 @@ public class Applicant extends BaseBean {
 
     @ApiParam("申请人配偶身份证号")
     private String mateIdCard;
+
+
+    //一对多
+//    private List<HousingFile>  housingFiles = new ArrayList<>();
 
 //    private String uid;
 //
@@ -73,14 +77,6 @@ public class Applicant extends BaseBean {
 
     public void setMateIdCard(String mateIdCard) {
         this.mateIdCard = mateIdCard;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
