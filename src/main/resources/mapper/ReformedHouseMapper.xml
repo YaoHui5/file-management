@@ -6,9 +6,9 @@
 
     <resultMap id="resultMap" type="com.bnuz.filemanagement.model.ReformedHouse">
         <result column="id" property="id"/>
-        <result column="unit" property="unit"/>
-        <result column="uid" property="uid"/>
-        <result column="realty_name" property="realtyName"/>
+        <result column="original_unit" property="originalUnit"/>
+        <result column="house_id" property="houseId"/>
+        <result column="sales_unit" property="salesUnit"/>
         <result column="house_location" property="houseLocation"/>
         <result column="house_area" property="houseArea"/>
         <result column="house_type" property="houseType"/>
@@ -16,20 +16,22 @@
         <result column="house_cost" property="houseCost"/>
         <result column="reformed_date" property="reformedDate"/>
         <result column="out_standard" property="outStandard"/>
+        <result column="property_transition_data" property="propertyTransitionData"/>
     </resultMap>
 
 
     <sql id="select">
         id,
-        unit,uid,realty_name,house_location,house_area,house_type,house_price,house_cost,reformed_date,out_standard
+        original_unit,house_id,sales_unit,house_location,house_area,house_type,house_price,house_cost,
+        reformed_date,out_standard,property_transition_data
     </sql>
 
     <!-- 录入单位公房房改简况数据 -->
     <insert id="insert">
-        insert into reformed_house(unit,uid,realty_name,house_location,house_area,house_type,
-                                   house_price,house_cost,reformed_date,out_standard)
-        values (#{unit},#{uid},#{realtyName},#{houseLocation},#{houseArea},#{houseType},
-                #{housePrice},#{houseCost},#{reformedDate},#{outStandard});
+        insert into reformed_house(original_unit,house_id,sales_unit,house_location,house_area,house_type,
+                                   house_price,house_cost,reformed_date,out_standard,property_transition_data)
+        values (#{originalUnit},#{houseId},#{salesUnit},#{houseLocation},#{houseArea},#{houseType},
+                #{housePrice},#{houseCost},#{reformedDate},#{outStandard},#{propertyTransitionData});
     </insert>
 
     <!-- 根据id删除单位公房房改简况数据 -->
@@ -38,13 +40,13 @@
     </delete>
 
 
-    <!-- 根据Uid修改 -->
+    <!-- 根据id修改 -->
     <update id="update" parameterType="com.bnuz.filemanagement.model.ReformedHouse">
         update reformed_house
         <set>
-            <if test="unit != null">unit = #{unit},</if>
-            <if test="uid != null">uid = #{uid},</if>
-            <if test="realtyName != null">realty_name = #{realtyName},</if>
+            <if test="originalUnit != null">original_unit = #{originalUnit},</if>
+            <if test="houseId != null">house_id = #{houseId},</if>
+            <if test="salesUnit != null">sales_unit = #{salesUnit},</if>
             <if test="houseLocation != null">house_location = #{houseLocation},</if>
             <if test="houseArea != null">house_area = #{houseArea},</if>
             <if test="houseType != null">house_type = #{houseType},</if>
@@ -52,6 +54,7 @@
             <if test="houseCost != null">house_cost = #{houseCost},</if>
             <if test="reformedDate != null">reformed_date = #{reformedDate},</if>
             <if test="outStandard != null">out_standard = #{outStandard},</if>
+            <if test="propertyTransitionData != null">property_transition_data = #{propertyTransitionData},</if>
         </set>
         where id = #{id}
     </update>
@@ -68,16 +71,16 @@
                 id = #{id}
             </if>
 
-            <if test="unit !=null and unit!=''">
-                AND unit = #{unit}
+            <if test="originalUnit !=null and originalUnit!=''">
+                AND original_unit = #{originalUnit}
             </if>
 
-            <if test="uid !=null and uid!=''">
-                AND uid = #{uid}
+            <if test="houseId !=null and houseId!=''">
+                AND house_id = #{houseId}
             </if>
 
-            <if test="realtyName !=null and realtyName !=''">
-                AND realty_name = #{realtyName}
+            <if test="salesUnit !=null and salesUnit !=''">
+                AND sales_unit = #{salesUnit}
             </if>
 
             <if test="houseLocation !=null and houseLocation !=''">
@@ -107,6 +110,10 @@
             <if test="outStandard !=null and outStandard != ''">
                 AND out_standard = #{outStandard}
             </if>
+
+            <if test="propertyTransitionData !=null and propertyTransitionData != ''">
+                AND property_transition_data = #{propertyTransitionData}
+            </if>
         </where>
     </select>
 
@@ -132,7 +139,7 @@
         <include refid="select"></include>
         from reformed_house
         where reformed_date = date_format(#{reformedDate},'%Y-%c-%d')
-        group by unit;
+        group by original_unit;
     </select>
 
 <!--    <select  id="getYearMonthDay"  resultType="com.bnuz.filemanagement.model.ReformedHouse">-->

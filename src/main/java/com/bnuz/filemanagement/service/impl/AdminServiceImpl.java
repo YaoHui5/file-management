@@ -1,7 +1,6 @@
 package com.bnuz.filemanagement.service.impl;
 
 
-import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.common.BaseServiceImpl;
 import com.bnuz.filemanagement.mapper.AdminMapper;
 import com.bnuz.filemanagement.model.Admin;

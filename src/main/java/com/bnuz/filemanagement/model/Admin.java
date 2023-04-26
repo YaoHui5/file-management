@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 public class Admin extends BaseBean {
 
 
+    @ApiParam("管理员账号")
     private String adminName;
 
+    @ApiParam("密码")
     private String password;
 
     @ApiParam("帐号状态：0代表正常，1代表停用")

@@ -3,7 +3,6 @@ package com.bnuz.filemanagement.controller;
 import com.bnuz.filemanagement.common.BaseController;
 import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.model.Admin;
-import com.bnuz.filemanagement.model.HousingFile;
 import com.bnuz.filemanagement.service.AdminService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;

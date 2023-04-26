@@ -12,6 +12,7 @@
         <result column="gender" property="gender"/>
         <result column="mate_name" property="mateName"/>
         <result column="mate_idcard" property="mateIdCard"/>
+        <result column="working_address" property="workingAddress"/>
     </resultMap>
 
     <sql id="select">
@@ -19,10 +20,10 @@
         name,id_card,phone,gender,mate_name,mate_idcard,working_address
     </sql>
 
-    <sql id="selectByIdCard">
-        a.id,a.name,a.idCard,a.phone,a.gender,a.mateName,a.mateIdCard,a.workingAddress,
-        h.id,h.uid,h.ownerName,h.gender,h.idCard,h.phone,h.workingAddress,h.houseLocation,h.houseArea,h.houseType,h.entryDate,h.salesUnit,h.propertyTransition
-    </sql>
+<!--    <sql id="selectByIdCard">-->
+<!--        a.id,a.name,a.idCard,a.phone,a.gender,a.mateName,a.mateIdCard,a.workingAddress,-->
+<!--        h.id,h.uid,h.ownerName,h.gender,h.idCard,h.phone,h.workingAddress,h.houseLocation,h.houseArea,h.houseType,h.entryDate,h.salesUnit,h.propertyTransition-->
+<!--    </sql>-->
 
 
     <!-- 添加申请人 -->
@@ -32,7 +33,7 @@
         values(#{name},#{idCard},#{phone},#{gender},#{mateName},#{mateIdCard},#{workingAddress});
     </insert>
 
-    <!-- 根据申请人id删除申请人信息 -->
+    <!-- 根据id删除申请人 -->
     <delete id="deleteById">
         delete from applicant where id=#{id};
     </delete>
@@ -53,18 +54,18 @@
     </update>
 
     <!-- 根据条件模糊查询申请人信息 -->
-<!--    <select id="findByFuzzyName" resultMap="resultMap">-->
-<!--        select *from applicant-->
-<!--        <where>-->
-<!--            <if test="name !=null and name!=''">-->
-<!--                name like concat('%',#{name},'%')-->
-<!--            </if>-->
+    <select id="findByFuzzyName" resultMap="resultMap">
+        select *from applicant
+        <where>
+            <if test="name !=null and name!=''">
+                name like concat('%',#{name},'%')
+            </if>
 
-<!--            <if test="mateName !=null and mateName !=''">-->
-<!--                AND mate_name like concat('%',#{mateName},'%')-->
-<!--            </if>-->
-<!--        </where>-->
-<!--    </select>-->
+            <if test="mateName !=null and mateName !=''">
+                AND mate_name like concat('%',#{mateName},'%')
+            </if>
+        </where>
+    </select>
 
 
     <!-- 条件查询申请人档案数据-->

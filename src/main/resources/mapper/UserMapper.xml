@@ -6,19 +6,24 @@
 
     <sql id="select">
         id,
-        username,password
+        username,password,gender,identity,status,group,note
     </sql>
 
     <resultMap id="resultMap" type="com.bnuz.filemanagement.model.User">
         <result column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
+        <result column="gender" property="gender"/>
+        <result column="identity" property="identity"/>
+        <result column="status" property="status"/>
+        <result column="group" property="group"/>
+        <result column="note" property="note"/>
     </resultMap>
 
     <!-- 注册/添加用户 -->
     <insert id="insert">
-        insert into user(username,password)
-        values (#{username},#{password});
+        insert into user(username,password,gender,identity,status,group,note)
+        values (#{username},#{password},#{gender},#{identity},#{status},#{group},#{note});
     </insert>
 
     <!-- 用户登录 -->
@@ -37,6 +42,11 @@
         <set>
             <if test="username != null">username = #{username},</if>
             <if test="password != null">password = #{password},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="identity != null">identity = #{identity},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="group != null">group = #{group},</if>
+            <if test="note != null">note = #{note},</if>
         </set>
         where id = #{id}
     </update>
@@ -58,6 +68,22 @@
 
             <if test="password !=null and password !=''">
                 AND password = #{password}
+            </if>
+
+            <if test="gender !=null and gender !=''">
+                AND gender = #{gender}
+            </if>
+
+            <if test="identity !=null and identity !=''">
+                AND identity = #{identity}
+            </if>
+
+            <if test="group !=null and group !=''">
+                AND group = #{group}
+            </if>
+
+            <if test="note !=null and note !=''">
+                AND note = #{note}
             </if>
         </where>
     </select>

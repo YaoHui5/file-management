@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ApplicantService extends BaseService<Applicant> {
 
-//    List<Applicant> findByFuzzyName(Applicant applicant);
+    List<Applicant> findByFuzzyName(Applicant applicant);
 
 //    List<Applicant> getAll();
 //

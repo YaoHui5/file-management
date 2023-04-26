@@ -3,12 +3,18 @@ package com.bnuz.filemanagement.controller;
 
 import com.bnuz.filemanagement.common.BaseController;
 import com.bnuz.filemanagement.common.BaseService;
+import com.bnuz.filemanagement.common.Result;
+import com.bnuz.filemanagement.model.Applicant;
 import com.bnuz.filemanagement.model.HousingFile;
 import com.bnuz.filemanagement.service.ApplicantService;
 import com.bnuz.filemanagement.service.HousingFileService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Api(tags = "个人住房档案数据接口")
 @RestController
@@ -18,8 +24,8 @@ public class HousingFileController extends BaseController<HousingFile> {
     @Autowired
     private HousingFileService housingFileService;
 
-//    @Autowired
-//    private ApplicantService applicantService;
+    @Autowired
+    private ApplicantService applicantService;
 
 
     @Override
@@ -27,8 +33,40 @@ public class HousingFileController extends BaseController<HousingFile> {
         return housingFileService;
     }
 
-//    @Autowired
-//    private HousingFileService housingFileService;
+
+    @ApiOperation(value = "按身份证号查询",notes = "根据申请人idcard或配偶mateIdcard查询个人住房档案")
+    @GetMapping("/find/IdCard")
+    public Result findByIdCard(Applicant applicant){
+
+        Applicant at = new Applicant();
+
+        HousingFile hs = new HousingFile();
+
+        String houseIdCard= applicantService.findOne(applicant).getIdCard();
+
+        hs.setIdCard(houseIdCard);
+
+        return Result.success(housingFileService.findOne(hs));
+    }
+
+    @ApiOperation(value = "按姓名模糊查询",notes = "根据申请人name/mateName查询个人住房档案")
+    @GetMapping("/find/name")
+    public Result findByName(Applicant applicant){
+        List<Applicant> applicantList = applicantService.findByFuzzyName(applicant);
+
+        ArrayList<Object> housingFileList = new ArrayList<>();
+        HousingFile hs = new HousingFile();
+
+        for (Applicant al: applicantList) {
+            hs.setIdCard(al.getIdCard());
+            HousingFile housingFile = housingFileService.findOne(hs);
+            housingFileList.add(housingFile);
+        }
+
+        return Result.success(housingFileList);
+    }
+
+
 //
 //
 //    @ApiOperation(value = "个人住房档案录入",notes = "插入一条个人住房档案信息")

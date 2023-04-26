@@ -6,7 +6,7 @@
 
     <resultMap id="resultMap" type="com.bnuz.filemanagement.model.HousingFile">
         <result column="id" property="id"/>
-        <result column="uid" property="uid"/>
+        <result column="house_id" property="houseId"/>
         <result column="owner_name" property="ownerName"/>
         <result column="gender" property="gender"/>
         <result column="id_card" property="idCard"/>
@@ -17,22 +17,21 @@
         <result column="house_type" property="houseType"/>
         <result column="entry_date" property="entryDate"/>
         <result column="sales_unit" property="salesUnit"/>
-        <result column="property_transition" property="propertyTransition"/>
     </resultMap>
 
 
     <sql id="select">
         id,
-        uid,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
-                                 entry_date,sales_unit,property_transition
+        house_id,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
+                                 entry_date,sales_unit
     </sql>
     
     <!-- 录入个人住房档案 -->
     <insert id="insert">
-        insert into housing_file(uid,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
-                                 entry_date,sales_unit,property_transition)
-        values (#{uid},#{ownerName},#{gender},#{idCard},#{phone},#{workingAddress},
-                #{houseLocation},#{houseArea},#{houseType},#{entryDate},#{salesUnit},#{propertyTransition});
+        insert into housing_file(house_id,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
+                                 entry_date,sales_unit)
+        values (#{houseId},#{ownerName},#{gender},#{idCard},#{phone},#{workingAddress},
+                #{houseLocation},#{houseArea},#{houseType},#{entryDate},#{salesUnit});
     </insert>
 
 
@@ -46,7 +45,7 @@
     <update id="update" parameterType="com.bnuz.filemanagement.model.HousingFile">
         update housing_file
         <set>
-            <if test="uid != null">uid = #{uid},</if>
+            <if test="houseId != null">house_id = #{houseId},</if>
             <if test="ownerName != null">owner_name = #{ownerName},</if>
             <if test="gender != null">gender = #{gender},</if>
             <if test="idCard != null">id_card = #{idCard},</if>
@@ -57,7 +56,6 @@
             <if test="houseLocation != null">house_location = #{houseLocation},</if>
             <if test="entryDate != null">entry_date = #{entryDate},</if>
             <if test="salesUnit != null">sales_unit = #{salesUnit},</if>
-            <if test="propertyTransition != null">property_transition = #{propertyTransition},</if>
         </set>
         where id = #{id}
     </update>
@@ -74,8 +72,8 @@
                  id = #{id}
             </if>
 
-            <if test="uid !=null and uid!=''">
-                AND uid = #{uid}
+            <if test="houseId !=null and houseId!=''">
+                AND house_id = #{houseId}
             </if>
 
             <if test="ownerName !=null and ownerName !=''">
@@ -112,10 +110,6 @@
 
             <if test="salesUnit !=null and salesUnit != ''">
                 AND sales_unit = #{salesUnit}
-            </if>
-
-            <if test="propertyTransition !=null and propertyTransition != ''">
-                AND property_transition = #{propertyTransition}
             </if>
         </where>
     </select>

@@ -6,28 +6,29 @@
 
     <resultMap id="resultMap" type="com.bnuz.filemanagement.model.PropertyRight">
         <result column="id" property="id"/>
-        <result column="uid" property="uid"/>
+        <result column="house_id" property="houseId"/>
+        <result column="owner_name" property="ownerName"/>
+        <result column="original_unit" property="originalUnit"/>
         <result column="house_area" property="houseArea"/>
-        <result column="house_type" property="houseType"/>
         <result column="location" property="location"/>
+        <result column="house_type" property="houseType"/>
         <result column="part_to_full" property="partToFull"/>
-        <result column="property_right_data" property="propertyRightData"/>
         <result column="property_right_retract" property="propertyRightRetract"/>
-        <result column="owner_unit" property="ownerUnit"/>
+        <result column="property_right_date" property="propertyRightDate"/>
     </resultMap>
 
 
     <sql id="select">
         id,
-        uid,house_area,house_type,location,part_to_full,property_right_data,property_right_retract,owner_unit
+        house_id,owner_name,original_unit,house_area,location,house_type,part_to_full,property_right_retract,property_right_date
     </sql>
 
     <!-- 录入产权产籍数据 -->
     <insert id="insert">
-        insert into property_right(uid,house_area,house_type,location,part_to_full,
-                                   property_right_data,property_right_retract,owner_unit)
-        values (#{uid},#{houseArea},#{houseType},#{location},#{partToFull},
-                #{propertyRightData},#{propertyRightRetract},#{ownerUnit});
+        insert into property_right(house_id,owner_name,original_unit,house_area,house_type,location,part_to_full,
+                                   property_right_retract,property_right_date)
+        values (#{houseId},#{ownerName},#{originalUnit},#{houseArea},#{houseType},#{location},#{partToFull},
+                #{propertyRightRetract},#{propertyRightDate});
     </insert>
 
 
@@ -41,14 +42,15 @@
     <update id="update" parameterType="com.bnuz.filemanagement.model.PropertyRight">
         update property_right
         <set>
-            <if test="uid != null">uid = #{uid},</if>
+            <if test="houseId != null">house_id = #{houseId},</if>
+            <if test="ownerName != null">owner_name = #{ownerName},</if>
+            <if test="originalUnit != null">original_unit = #{originalUnit},</if>
             <if test="houseArea != null">house_area = #{houseArea},</if>
-            <if test="houseType != null">house_type = #{houseType},</if>
             <if test="location != null">location = #{location},</if>
-            <if test="propertyRightData != null">property_right_data = #{propertyRightData},</if>
+            <if test="houseType != null">house_type = #{houseType},</if>
             <if test="partToFull != null">part_to_full = #{partToFull},</if>
             <if test="propertyRightRetract != null">property_right_retract = #{propertyRightRetract},</if>
-            <if test="ownerUnit != null">owner_unit = #{ownerUnit},</if>
+            <if test="propertyRightDate != null">property_right_date = #{propertyRightDate},</if>
         </set>
         where id = #{id}
     </update>
@@ -63,36 +65,40 @@
                 id = #{id}
             </if>
 
-            <if test="uid !=null and uid!=''">
-                AND uid = #{uid}
+            <if test="houseId !=null and houseId!=''">
+                AND house_id = #{houseId}
+            </if>
+
+            <if test="ownerName !=null and ownerName!=''">
+                AND house_id = #{houseId}
+            </if>
+
+            <if test="originalUnit !=null and originalUnit!=''">
+                AND original_unit = #{originalUnit}
             </if>
 
             <if test="houseArea !=null and houseArea !=''">
                 AND house_area = #{houseArea}
             </if>
 
-            <if test="houseType !=null and houseType !=''">
-                AND house_type = #{houseType}
-            </if>
-
             <if test="location !=null and location !=''">
                 AND location = #{location}
+            </if>
+
+            <if test="houseType !=null and houseType !=''">
+                AND house_type = #{houseType}
             </if>
 
             <if test="partToFull !=null and partToFull != ''">
                 AND part_to_full = #{partToFull}
             </if>
 
-            <if test="propertyRightData !=null and propertyRightData != ''">
-                AND property_right_data = #{propertyRightData}
-            </if>
-
             <if test="propertyRightRetract !=null and propertyRightRetract != ''">
                 AND house_location = #{houseLocation}
             </if>
 
-            <if test="ownerUnit !=null and ownerUnit != ''">
-                AND owner_unit = #{ownerUnit}
+            <if test="propertyRightDate !=null and propertyRightDate != ''">
+                AND property_right_date = #{propertyRightDate}
             </if>
         </where>
     </select>

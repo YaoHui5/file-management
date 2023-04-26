@@ -96,11 +96,11 @@
     </select>
 
 
-    <select id="findByUAdminName" resultType="com.bnuz.filemanagement.model.Admin">
-        select
-        <include refid="select"></include>
-        from admin
-        where admin_name = #{adminName}
-    </select>
+<!--    <select id="findByUAdminName" resultType="com.bnuz.filemanagement.model.Admin">-->
+<!--        select-->
+<!--        <include refid="select"></include>-->
+<!--        from admin-->
+<!--        where admin_name = #{adminName}-->
+<!--    </select>-->
 
 </mapper>

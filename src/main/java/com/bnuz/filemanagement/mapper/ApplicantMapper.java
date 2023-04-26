@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface ApplicantMapper extends BaseMapper<Applicant> {
 
-//    public List<Applicant> findByFuzzyName(Applicant applicant);
+    public List<Applicant> findByFuzzyName(Applicant applicant);
 
 //    public Applicant selectByIdCardForHousingFile(@Param("id_card")String idCard);
 
