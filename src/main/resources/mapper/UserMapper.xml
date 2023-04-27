@@ -5,8 +5,31 @@
 <mapper namespace="com.bnuz.filemanagement.mapper.UserMapper">
 
     <sql id="select">
-        id,
-        username,password,gender,identity,status,group,note
+        id,username,password,gender,identity,status,`group`,note
+    </sql>
+
+    <sql id="query">
+        <if test="id !=null and id !=''">
+            AND id = #{id}
+        </if>
+        <if test="username !=null and username!=''">
+            AND username = #{username}
+        </if>
+        <if test="password !=null and password !=''">
+            AND password = #{password}
+        </if>
+        <if test="gender !=null and gender !=''">
+            AND gender = #{gender}
+        </if>
+        <if test="identity !=null and identity !=''">
+            AND identity = #{identity}
+        </if>
+        <if test="group !=null and group !=''">
+            AND `group` = #{group}
+        </if>
+        <if test="note !=null and note !=''">
+            AND note = #{note}
+        </if>
     </sql>
 
     <resultMap id="resultMap" type="com.bnuz.filemanagement.model.User">
@@ -22,7 +45,7 @@
 
     <!-- 注册/添加用户 -->
     <insert id="insert">
-        insert into user(username,password,gender,identity,status,group,note)
+        insert into user(username,password,gender,identity,status,`group`,note)
         values (#{username},#{password},#{gender},#{identity},#{status},#{group},#{note});
     </insert>
 
@@ -45,7 +68,7 @@
             <if test="gender != null">gender = #{gender},</if>
             <if test="identity != null">identity = #{identity},</if>
             <if test="status != null">status = #{status},</if>
-            <if test="group != null">group = #{group},</if>
+            <if test="group != null">`group` = #{group},</if>
             <if test="note != null">note = #{note},</if>
         </set>
         where id = #{id}
@@ -58,33 +81,7 @@
         <include refid="select"></include>
         from user
         <where>
-            <if test="id !=null and id !=''">
-                id = #{id}
-            </if>
-
-            <if test="username !=null and username!=''">
-                AND username = #{username}
-            </if>
-
-            <if test="password !=null and password !=''">
-                AND password = #{password}
-            </if>
-
-            <if test="gender !=null and gender !=''">
-                AND gender = #{gender}
-            </if>
-
-            <if test="identity !=null and identity !=''">
-                AND identity = #{identity}
-            </if>
-
-            <if test="group !=null and group !=''">
-                AND group = #{group}
-            </if>
-
-            <if test="note !=null and note !=''">
-                AND note = #{note}
-            </if>
+            <include refid="query"></include>
         </where>
     </select>
 
@@ -93,6 +90,9 @@
         select
         <include refid="select"></include>
         from user
+        <where>
+            <include refid="query"></include>
+        </where>
     </select>
 
     <!-- 根据id查询用户-->

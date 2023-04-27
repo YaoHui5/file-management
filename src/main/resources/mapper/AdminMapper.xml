@@ -18,6 +18,32 @@
         <result column="note" property="note"/>
     </resultMap>
 
+    <sql id="query">
+        <if test="id !=null and id !=''">
+            AND id = #{id}
+        </if>
+
+        <if test="adminName !=null and adminName!=''">
+            AND admin_name = #{adminName}
+        </if>
+
+        <if test="password !=null and password !=''">
+            AND password = #{password}
+        </if>
+
+        <if test="status !=null and status !=''">
+            AND status = #{status}
+        </if>
+
+        <if test="identity !=null and identity !=''">
+            AND identity = #{identity}
+        </if>
+
+        <if test="note !=null and note !=''">
+            AND note = #{note}
+        </if>
+    </sql>
+
     <!-- 注册/添加管理员 -->
     <insert id="insert">
         insert into admin(admin_name,password)
@@ -54,29 +80,7 @@
         <include refid="select"></include>
         from admin
         <where>
-            <if test="id !=null and id !=''">
-                id = #{id}
-            </if>
-
-            <if test="adminName !=null and adminName!=''">
-                AND admin_name = #{adminName}
-            </if>
-
-            <if test="password !=null and password !=''">
-                AND password = #{password}
-            </if>
-
-            <if test="status !=null and status !=''">
-                AND status = #{status}
-            </if>
-
-            <if test="identity !=null and identity !=''">
-                AND identity = #{identity}
-            </if>
-
-            <if test="note !=null and note !=''">
-                AND note = #{note}
-            </if>
+            <include refid="query"></include>
         </where>
     </select>
 
@@ -85,6 +89,9 @@
         select
         <include refid="select"></include>
         from admin
+        <where>
+            <include refid="query"></include>
+        </where>
     </select>
 
     <!-- 根据id查询管理员-->
@@ -96,11 +103,11 @@
     </select>
 
 
-<!--    <select id="findByUAdminName" resultType="com.bnuz.filemanagement.model.Admin">-->
-<!--        select-->
-<!--        <include refid="select"></include>-->
-<!--        from admin-->
-<!--        where admin_name = #{adminName}-->
-<!--    </select>-->
+    <select id="findByAdminName" resultType="com.bnuz.filemanagement.model.Admin">
+        select
+        <include refid="select"></include>
+        from admin
+        where admin_name = #{adminName}
+    </select>
 
 </mapper>

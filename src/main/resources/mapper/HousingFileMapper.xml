@@ -21,9 +21,49 @@
 
 
     <sql id="select">
-        id,
-        house_id,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,
-                                 entry_date,sales_unit
+        id,house_id,owner_name,gender,id_card,phone,working_address,house_location,house_area,house_type,entry_date,sales_unit
+    </sql>
+
+    <sql id="query">
+        <if test="id !=null and id !=''">
+            AND id = #{id}
+        </if>
+        <if test="houseId !=null and houseId!=''">
+            AND house_id = #{houseId}
+        </if>
+
+        <if test="ownerName !=null and ownerName !=''">
+            AND owner_name = #{ownerName}
+        </if>
+
+        <if test="gender !=null and gender !=''">
+            AND gender = #{gender}
+        </if>
+
+        <if test="idCard !=null and idCard !=''">
+            AND id_card = #{idCard}
+        </if>
+        <if test="phone !=null and phone != ''">
+            AND phone = #{phone}
+        </if>
+        <if test="workingAddress !=null and workingAddress != ''">
+            AND working_address = #{workingAddress}
+        </if>
+        <if test="houseLocation !=null and houseLocation != ''">
+            AND house_location = #{houseLocation}
+        </if>
+        <if test="houseArea !=null and houseArea != ''">
+            AND house_area = #{houseArea}
+        </if>
+        <if test="houseType !=null and houseType != ''">
+            AND house_type = #{houseType}
+        </if>
+        <if test="entryDate !=null and entryDate != ''">
+            AND entry_date = #{entryDate}
+        </if>
+        <if test="salesUnit !=null and salesUnit != ''">
+            AND sales_unit = #{salesUnit}
+        </if>
     </sql>
     
     <!-- 录入个人住房档案 -->
@@ -67,50 +107,7 @@
         <include refid="select"></include>
         from housing_file
         <where>
-
-            <if test="id !=null and id !=''">
-                 id = #{id}
-            </if>
-
-            <if test="houseId !=null and houseId!=''">
-                AND house_id = #{houseId}
-            </if>
-
-            <if test="ownerName !=null and ownerName !=''">
-                AND owner_name = #{ownerName}
-            </if>
-
-            <if test="gender !=null and gender !=''">
-                AND gender = #{gender}
-            </if>
-
-            <if test="idCard !=null and idCard !=''">
-                AND id_card = #{idCard}
-            </if>
-
-            <if test="phone !=null and phone != ''">
-                AND phone = #{phone}
-            </if>
-
-            <if test="workingAddress !=null and workingAddress != ''">
-                AND working_address = #{workingAddress}
-            </if>
-
-            <if test="houseLocation !=null and houseLocation != ''">
-                AND house_location = #{houseLocation}
-            </if>
-
-            <if test="houseType !=null and houseType != ''">
-                AND house_type = #{houseType}
-            </if>
-
-            <if test="entryDate !=null and entryDate != ''">
-                AND entry_date = #{entryDate}
-            </if>
-
-            <if test="salesUnit !=null and salesUnit != ''">
-                AND sales_unit = #{salesUnit}
-            </if>
+            <include refid="query"></include>
         </where>
     </select>
 
@@ -126,6 +123,9 @@
         select
         <include refid="select"></include>
         from housing_file
+        <where>
+            <include refid="query"></include>
+        </where>
     </select>
 
 

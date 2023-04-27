@@ -15,4 +15,6 @@ public interface ReformedHouseService extends BaseService<ReformedHouse> {
 //    ReformedHouse getReformedHouseByUid(String uid);\
 
     List<ReformedHouse> countByDate(String reformedDate);
+
+//    List<ReformedHouse> countByStandard(int outStandard);
 }

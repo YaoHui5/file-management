@@ -5,5 +5,5 @@ import com.bnuz.filemanagement.model.Admin;
 
 public interface AdminService extends BaseService<Admin> {
 
-
+    Admin findByAdminName(Admin admin);
 }

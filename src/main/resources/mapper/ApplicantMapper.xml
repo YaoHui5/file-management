@@ -20,6 +20,40 @@
         name,id_card,phone,gender,mate_name,mate_idcard,working_address
     </sql>
 
+    <sql id="query">
+        <if test="id !=null and id !=''">
+            AND id = #{id}
+        </if>
+
+        <if test="name !=null and name!=''">
+            AND name = #{name}
+        </if>
+
+        <if test="idCard !=null and idCard !=''">
+            AND id_card = #{idCard}
+        </if>
+
+        <if test="phone !=null and phone != ''">
+            AND phone = #{phone}
+        </if>
+
+        <if test="gender !=null and gender !=''">
+            AND gender = #{gender}
+        </if>
+
+        <if test="mateName !=null and mateName != ''">
+            AND mate_name = #{mateName}
+        </if>
+
+        <if test="mateIdCard !=null and mateIdCard != ''">
+            AND mate_idcard = #{mateIdCard}
+        </if>
+
+        <if test="workingAddress !=null and workingAddress != ''">
+            AND working_address = #{workingAddress}
+        </if>
+    </sql>
+
 <!--    <sql id="selectByIdCard">-->
 <!--        a.id,a.name,a.idCard,a.phone,a.gender,a.mateName,a.mateIdCard,a.workingAddress,-->
 <!--        h.id,h.uid,h.ownerName,h.gender,h.idCard,h.phone,h.workingAddress,h.houseLocation,h.houseArea,h.houseType,h.entryDate,h.salesUnit,h.propertyTransition-->
@@ -55,12 +89,11 @@
 
     <!-- 根据条件模糊查询申请人信息 -->
     <select id="findByFuzzyName" resultMap="resultMap">
-        select *from applicant
+        select * from applicant
         <where>
             <if test="name !=null and name!=''">
-                name like concat('%',#{name},'%')
+                AND name like concat('%',#{name},'%')
             </if>
-
             <if test="mateName !=null and mateName !=''">
                 AND mate_name like concat('%',#{mateName},'%')
             </if>
@@ -74,39 +107,7 @@
         <include refid="select"></include>
         from applicant
         <where>
-
-            <if test="id !=null and id !=''">
-                id = #{id}
-            </if>
-
-            <if test="name !=null and name!=''">
-                AND name = #{name}
-            </if>
-
-            <if test="idCard !=null and idCard !=''">
-                AND id_card = #{idCard}
-            </if>
-
-            <if test="phone !=null and phone != ''">
-                AND phone = #{phone}
-            </if>
-
-            <if test="gender !=null and gender !=''">
-                AND gender = #{gender}
-            </if>
-
-            <if test="mateName !=null and mateName != ''">
-                AND mate_name = #{mateName}
-            </if>
-
-            <if test="mateIdCard !=null and mateIdCard != ''">
-                AND mate_idcard = #{mateIdCard}
-            </if>
-
-            <if test="workingAddress !=null and workingAddress != ''">
-                AND working_address = #{workingAddress}
-            </if>
-
+            <include refid="query"></include>
         </where>
     </select>
 
@@ -123,6 +124,9 @@
         select
         <include refid="select"></include>
         from applicant
+        <where>
+            <include refid="query"></include>
+        </where>
     </select>
 
 </mapper>

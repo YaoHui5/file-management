@@ -39,7 +39,7 @@ public class ReformedHouse extends BaseBean {
     private String reformedDate;
 
     @ApiParam("是否超出标准数据：0代表未超出，1代表已超出")
-    private short outStandard;
+    private int outStandard;
 
     @ApiParam("产权过渡数据")
     private String propertyTransitionData;
@@ -117,11 +117,11 @@ public class ReformedHouse extends BaseBean {
         this.reformedDate = reformedDate;
     }
 
-    public short getOutStandard() {
+    public int getOutStandard() {
         return outStandard;
     }
 
-    public void setOutStandard(short outStandard) {
+    public void setOutStandard(int outStandard) {
         this.outStandard = outStandard;
     }
 

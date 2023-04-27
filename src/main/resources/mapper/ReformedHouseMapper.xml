@@ -26,6 +26,45 @@
         reformed_date,out_standard,property_transition_data
     </sql>
 
+    <sql id="query">
+        <if test="id !=null and id !=''">
+            AND id = #{id}
+        </if>
+        <if test="originalUnit !=null and originalUnit!=''">
+            AND original_unit = #{originalUnit}
+        </if>
+        <if test="houseId !=null and houseId!=''">
+            AND house_id = #{houseId}
+        </if>
+        <if test="salesUnit !=null and salesUnit !=''">
+            AND sales_unit = #{salesUnit}
+        </if>
+        <if test="houseLocation !=null and houseLocation !=''">
+            AND house_location = #{houseLocation}
+        </if>
+        <if test="houseArea !=null and houseArea !=''">
+            AND house_area = #{houseArea}
+        </if>
+        <if test="houseType !=null and houseType != ''">
+            AND house_type = #{houseType}
+        </if>
+        <if test="housePrice !=null and housePrice != ''">
+            AND house_price = #{housePrice}
+        </if>
+        <if test="houseCost !=null and houseCost != ''">
+            AND house_cost = #{houseCost}
+        </if>
+        <if test="reformedDate !=null and reformedDate != ''">
+            AND reformed_date = #{reformedDate}
+        </if>
+        <if test="outStandard !=null and outStandard != ''">
+            AND out_standard = #{outStandard}
+        </if>
+        <if test="propertyTransitionData !=null and propertyTransitionData != ''">
+            AND property_transition_data = #{propertyTransitionData}
+        </if>
+    </sql>
+
     <!-- 录入单位公房房改简况数据 -->
     <insert id="insert">
         insert into reformed_house(original_unit,house_id,sales_unit,house_location,house_area,house_type,
@@ -66,54 +105,7 @@
         <include refid="select"></include>
         from reformed_house
         <where>
-
-            <if test="id !=null and id !=''">
-                id = #{id}
-            </if>
-
-            <if test="originalUnit !=null and originalUnit!=''">
-                AND original_unit = #{originalUnit}
-            </if>
-
-            <if test="houseId !=null and houseId!=''">
-                AND house_id = #{houseId}
-            </if>
-
-            <if test="salesUnit !=null and salesUnit !=''">
-                AND sales_unit = #{salesUnit}
-            </if>
-
-            <if test="houseLocation !=null and houseLocation !=''">
-                AND house_location = #{houseLocation}
-            </if>
-
-            <if test="houseArea !=null and houseArea !=''">
-                AND house_area = #{houseArea}
-            </if>
-
-            <if test="houseType !=null and houseType != ''">
-                AND house_type = #{houseType}
-            </if>
-
-            <if test="housePrice !=null and housePrice != ''">
-                AND house_price = #{housePrice}
-            </if>
-
-            <if test="houseCost !=null and houseCost != ''">
-                AND house_cost = #{houseCost}
-            </if>
-
-            <if test="reformedDate !=null and reformedDate != ''">
-                AND reformed_date = #{reformedDate}
-            </if>
-
-            <if test="outStandard !=null and outStandard != ''">
-                AND out_standard = #{outStandard}
-            </if>
-
-            <if test="propertyTransitionData !=null and propertyTransitionData != ''">
-                AND property_transition_data = #{propertyTransitionData}
-            </if>
+            <include refid="query"></include>
         </where>
     </select>
 
@@ -131,6 +123,9 @@
         select
         <include refid="select"></include>
         from reformed_house
+        <where>
+            <include refid="query"></include>
+        </where>
     </select>
 
 
@@ -147,13 +142,13 @@
 <!--    </select>-->
 
 
-    <!--    <select id="countByStandard" resultMap="resultMap">-->
-<!--        select-->
-<!--        <include refid="select"></include>-->
-<!--        from reformed_house-->
-<!--        where out_standard = #{outStandard}-->
-<!--        group by unit;-->
-<!--    </select>-->
+    <select id="countByStandard" resultMap="resultMap">
+        select
+        <include refid="select"></include>
+        from reformed_house
+        where out_standard = #{outStandard}
+        group by unit;
+    </select>
 
 
 </mapper>

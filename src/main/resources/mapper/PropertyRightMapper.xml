@@ -23,6 +23,47 @@
         house_id,owner_name,original_unit,house_area,location,house_type,part_to_full,property_right_retract,property_right_date
     </sql>
 
+    <sql id="query">
+        <if test="id !=null and id !=''">
+            AND id = #{id}
+        </if>
+        <if test="houseId !=null and houseId!=''">
+            AND house_id = #{houseId}
+        </if>
+
+        <if test="ownerName !=null and ownerName!=''">
+            AND house_id = #{houseId}
+        </if>
+
+        <if test="originalUnit !=null and originalUnit!=''">
+            AND original_unit = #{originalUnit}
+        </if>
+
+        <if test="houseArea !=null and houseArea !=''">
+            AND house_area = #{houseArea}
+        </if>
+
+        <if test="location !=null and location !=''">
+            AND location = #{location}
+        </if>
+
+        <if test="houseType !=null and houseType !=''">
+            AND house_type = #{houseType}
+        </if>
+
+        <if test="partToFull !=null and partToFull != ''">
+            AND part_to_full = #{partToFull}
+        </if>
+
+        <if test="propertyRightRetract !=null and propertyRightRetract != ''">
+            AND house_location = #{houseLocation}
+        </if>
+
+        <if test="propertyRightDate !=null and propertyRightDate != ''">
+            AND property_right_date = #{propertyRightDate}
+        </if>
+    </sql>
+
     <!-- 录入产权产籍数据 -->
     <insert id="insert">
         insert into property_right(house_id,owner_name,original_unit,house_area,house_type,location,part_to_full,
@@ -61,45 +102,7 @@
         <include refid="select"></include>
         from property_right
         <where>
-            <if test="id !=null and id !=''">
-                id = #{id}
-            </if>
-
-            <if test="houseId !=null and houseId!=''">
-                AND house_id = #{houseId}
-            </if>
-
-            <if test="ownerName !=null and ownerName!=''">
-                AND house_id = #{houseId}
-            </if>
-
-            <if test="originalUnit !=null and originalUnit!=''">
-                AND original_unit = #{originalUnit}
-            </if>
-
-            <if test="houseArea !=null and houseArea !=''">
-                AND house_area = #{houseArea}
-            </if>
-
-            <if test="location !=null and location !=''">
-                AND location = #{location}
-            </if>
-
-            <if test="houseType !=null and houseType !=''">
-                AND house_type = #{houseType}
-            </if>
-
-            <if test="partToFull !=null and partToFull != ''">
-                AND part_to_full = #{partToFull}
-            </if>
-
-            <if test="propertyRightRetract !=null and propertyRightRetract != ''">
-                AND house_location = #{houseLocation}
-            </if>
-
-            <if test="propertyRightDate !=null and propertyRightDate != ''">
-                AND property_right_date = #{propertyRightDate}
-            </if>
+            <include refid="query"></include>
         </where>
     </select>
 
@@ -117,6 +120,9 @@
         select
         <include refid="select"></include>
         from property_right
+        <where>
+            <include refid="query"></include>
+        </where>
     </select>
 
 </mapper>

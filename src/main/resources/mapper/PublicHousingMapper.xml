@@ -22,6 +22,39 @@
         house_id,applicant_name,id_card,working_address,entry_date,sales_unit,house_type,house_price,property_transition_status
     </sql>
 
+    <sql id="query">
+        <if test="id !=null and id !=''">
+            AND id = #{id}
+        </if>
+        <if test="houseId !=null and houseId!=''">
+            AND house_id = #{houseId}
+        </if>
+        <if test="applicantName !=null and applicantName !=''">
+            AND applicant_name = #{applicantName}
+        </if>
+        <if test="idCard !=null and idCard !=''">
+            AND id_card = #{idCard}
+        </if>
+        <if test="workingAddress !=null and workingAddress !=''">
+            AND working_address = #{workingAddress}
+        </if>
+        <if test="entryDate !=null and entryDate != ''">
+            AND entry_date = #{entryDate}
+        </if>
+        <if test="salesUnit !=null and salesUnit != ''">
+            AND sales_unit = #{salesUnit}
+        </if>
+        <if test="houseType !=null and houseType != ''">
+            AND house_type = #{houseType}
+        </if>
+        <if test="housePrice !=null and housePrice != ''">
+            AND house_price = #{housePrice}
+        </if>
+        <if test="propertyTransitionStatus !=null and propertyTransitionStatus != ''">
+            AND property_transition_status = #{propertyTransitionStatus}
+        </if>
+    </sql>
+
 
     <!-- 录入个人购单位公房档案信息 -->
     <insert id="insert">
@@ -60,46 +93,7 @@
         <include refid="select"></include>
         from public_housing
         <where>
-
-            <if test="id !=null and id !=''">
-                id = #{id}
-            </if>
-
-            <if test="houseId !=null and houseId!=''">
-                AND house_id = #{houseId}
-            </if>
-
-            <if test="applicantName !=null and applicantName !=''">
-                AND applicant_name = #{applicantName}
-            </if>
-
-            <if test="idCard !=null and idCard !=''">
-                AND id_card = #{idCard}
-            </if>
-
-            <if test="workingAddress !=null and workingAddress !=''">
-                AND working_address = #{workingAddress}
-            </if>
-
-            <if test="entryDate !=null and entryDate != ''">
-                AND entry_date = #{entryDate}
-            </if>
-
-            <if test="salesUnit !=null and salesUnit != ''">
-                AND sales_unit = #{salesUnit}
-            </if>
-
-            <if test="houseType !=null and houseType != ''">
-                AND house_type = #{houseType}
-            </if>
-
-            <if test="housePrice !=null and housePrice != ''">
-                AND house_price = #{housePrice}
-            </if>
-
-            <if test="propertyTransitionStatus !=null and propertyTransitionStatus != ''">
-                AND property_transition_status = #{propertyTransitionStatus}
-            </if>
+            <include refid="query"></include>
         </where>
     </select>
 
@@ -116,6 +110,9 @@
         select
         <include refid="select"></include>
         from public_housing
+        <where>
+            <include refid="query"></include>
+        </where>
     </select>
 
 

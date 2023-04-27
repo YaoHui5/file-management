@@ -13,4 +13,8 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, AdminMapper> implem
 
     @Autowired
     private AdminMapper adminMapper;
+
+    public Admin findByAdminName(Admin admin){
+        return adminMapper.findByAdminName(admin.getAdminName());
+    }
 }

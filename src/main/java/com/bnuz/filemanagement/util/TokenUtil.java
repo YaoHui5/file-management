@@ -9,10 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 public class TokenUtil {
 
 
-    public static String getTokenUserId(){
-        String token = getRequest().getHeader("token"); //从http请求头中取出
-        String userId = JWT.decode(token).getAudience().get(0);
-        return userId;
+    public static String getTokenId(){
+        String token = getRequest().getHeader("authorization").substring(7); //从http请求头中取出
+        String id = JWT.decode(token).getAudience().get(0);
+        return id;
+    }
+
+    public static Integer getTokenIdentity(String token){
+        Integer identity = JWT.decode(token).getClaim("identity").asInt();
+        return identity;
     }
 
 

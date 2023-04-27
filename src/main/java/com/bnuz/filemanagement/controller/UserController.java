@@ -2,10 +2,12 @@ package com.bnuz.filemanagement.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.bnuz.filemanagement.annotation.PassToken;
 import com.bnuz.filemanagement.annotation.UserLoginToken;
 import com.bnuz.filemanagement.common.BaseController;
 import com.bnuz.filemanagement.common.BaseService;
 import com.bnuz.filemanagement.common.Result;
+import com.bnuz.filemanagement.common.ResultCode;
 import com.bnuz.filemanagement.model.User;
 import com.bnuz.filemanagement.service.UserService;
 import com.bnuz.filemanagement.service.impl.TokenService;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 
 
 @Api(tags = "用户数据接口")
@@ -37,16 +40,21 @@ public class UserController extends BaseController<User> {
         return userService;
     }
 
+
+
+
+
+    @PassToken
     @ApiOperation(value = "登录",notes = "登录")
     @GetMapping("/login")
     public Object login(User user, HttpServletResponse response){
         JSONObject jsonObject = new JSONObject();
 
-        User userForBase = new User();
+        User userForBase = userService.findByUsername(user);
 
-        userForBase.setId(userService.findByUsername(user).getId());
-        userForBase.setUsername(userService.findByUsername(user).getUsername());
-        userForBase.setPassword(userService.findByUsername(user).getPassword());
+//        userForBase.setId(.getId());
+//        userForBase.setUsername(userService.findByUsername(user).getUsername());
+//        userForBase.setPassword(userService.findByUsername(user).getPassword());
 
         if(!userForBase.getPassword().equals(user.getPassword())){
             jsonObject.put("message","登陆失败，密码错误");
@@ -70,8 +78,7 @@ public class UserController extends BaseController<User> {
     public String getMessage(){
 
         //取出token中带的用户id，进行操作
-        System.out.println(TokenUtil.getTokenUserId());
-
+        System.out.println(TokenUtil.getTokenId());
         return "您已通过验证，成功登录系统！";
     }
 
@@ -89,22 +96,20 @@ public class UserController extends BaseController<User> {
 //        return Result.success(getService().findAll(user));
 //    }
 
-//    @ApiOperation(value = "用户注册",notes = "输入新的用户名和密码以完成注册")
-//    @RequestMapping(value = "/registerUser",method = RequestMethod.POST)
-//    public String register(@RequestParam("username")String username, @RequestParam("password")String password,
-//                           HttpServletRequest request){
-//        User user = new User();
-//        user.setUsername(username);
-//        user.setPassword(password);
-//
-//        if(userService.register(user)>0){
-//            request.getSession().setAttribute("session_user",user);
-//            return "注册成功,Welcome!!";
-//        }
-//        else{
-//            return "注册失败";
-//        }
-//    }
+    @PassToken
+    @ApiOperation(value = "用户注册",notes = "输入新的用户名和密码以完成注册")
+    @PostMapping(value = "/register")
+    public Result register(@RequestParam("username")String username, @RequestParam("password")String password){
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+
+        if(Objects.nonNull(userService.findByUsername(user))){
+            return Result.success("用户已经存在！");
+        }
+        userService.add(user);
+        return Result.success(user);
+    }
 //
 //
 //    @ApiOperation(value = "用户登录",notes = "输入正确的用户名以及密码即登录成功")

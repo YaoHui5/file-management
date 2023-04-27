@@ -32,15 +32,11 @@ public class PropertyRight extends BaseBean {
     @ApiParam("部分产权转全部产权数据")
     private String partToFull;
 
-//    @ApiParam("产权过渡数据")
-//    private String propertyRightData;
-
     @ApiParam("返还公产数据")
     private String propertyRightRetract;
 
     @ApiParam("产权证日期: yyyy-MM-dd")
-    private String property_right_date;
-
+    private String propertyRightDate;
 
 
     public String getHouseId() {
@@ -49,6 +45,22 @@ public class PropertyRight extends BaseBean {
 
     public void setHouseId(String houseId) {
         this.houseId = houseId;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getOriginalUnit() {
+        return originalUnit;
+    }
+
+    public void setOriginalUnit(String originalUnit) {
+        this.originalUnit = originalUnit;
     }
 
     public BigDecimal getHouseArea() {
@@ -91,27 +103,11 @@ public class PropertyRight extends BaseBean {
         this.propertyRightRetract = propertyRightRetract;
     }
 
-    public String getOwnerName() {
-        return ownerName;
+    public String getPropertyRightDate() {
+        return propertyRightDate;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
-    public String getOriginalUnit() {
-        return originalUnit;
-    }
-
-    public void setOriginalUnit(String originalUnit) {
-        this.originalUnit = originalUnit;
-    }
-
-    public String getProperty_right_date() {
-        return property_right_date;
-    }
-
-    public void setProperty_right_date(String property_right_date) {
-        this.property_right_date = property_right_date;
+    public void setPropertyRightDate(String propertyRightDate) {
+        this.propertyRightDate = propertyRightDate;
     }
 }
