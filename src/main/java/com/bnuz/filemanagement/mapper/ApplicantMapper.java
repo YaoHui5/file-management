@@ -15,6 +15,10 @@ public interface ApplicantMapper extends BaseMapper<Applicant> {
 
     public List<Applicant> findByFuzzyName(Applicant applicant);
 
+    Applicant findOneByIdCard(String idCard);
+
+    Applicant findOneByMateIdCard(String mateIdCard);
+
 //    public Applicant selectByIdCardForHousingFile(@Param("id_card")String idCard);
 
 //    public int add(Applicant applicant);

@@ -36,10 +36,10 @@ public abstract class BaseServiceImpl<T extends BaseBean,E extends BaseMapper<T>
        return e.findAll(t);
     }
 
-    @Override
-    public T findOne(T t){
-        return e.findOne(t);
-    }
+//    @Override
+//    public T findOne(T t){
+//        return e.findOne(t);
+//    }
 
     @Override
     public T findById(Integer id){

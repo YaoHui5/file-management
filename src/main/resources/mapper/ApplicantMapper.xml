@@ -102,13 +102,27 @@
 
 
     <!-- 条件查询申请人档案数据-->
-    <select id="findOne" resultType="com.bnuz.filemanagement.model.Applicant">
+<!--    <select id="findOne" resultType="com.bnuz.filemanagement.model.Applicant">-->
+<!--        select-->
+<!--        <include refid="select"></include>-->
+<!--        from applicant-->
+<!--        <where>-->
+<!--            <include refid="query"></include>-->
+<!--        </where>-->
+<!--    </select>-->
+
+    <select id="findOneByIdCard" resultType="com.bnuz.filemanagement.model.Applicant">
         select
         <include refid="select"></include>
         from applicant
-        <where>
-            <include refid="query"></include>
-        </where>
+        where id_card = #{idCard}
+    </select>
+
+    <select id="findOneByMateIdCard" resultType="com.bnuz.filemanagement.model.Applicant">
+        select
+        <include refid="select"></include>
+        from applicant
+        where mate_idcard = #{mateIdCard}
     </select>
 
     <!-- id查询申请人信息 -->

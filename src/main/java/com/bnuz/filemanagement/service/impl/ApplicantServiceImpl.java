@@ -21,6 +21,16 @@ public class ApplicantServiceImpl extends BaseServiceImpl<Applicant,ApplicantMap
         return applicantMapper.findByFuzzyName(applicant);
     }
 
+    @Override
+    public Applicant findOneByIdCard(String idCard) {
+        return applicantMapper.findOneByIdCard(idCard);
+    }
+
+    @Override
+    public Applicant findOneByMateIdCard(String mateIdCard) {
+        return applicantMapper.findOneByMateIdCard(mateIdCard);
+    }
+
 
 //
 //    @Override

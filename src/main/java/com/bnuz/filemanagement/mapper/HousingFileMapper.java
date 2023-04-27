@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface HousingFileMapper extends BaseMapper<HousingFile>
 {
 
-
+    HousingFile findOneByIdCard(String idCard);
 
 }

@@ -12,21 +12,31 @@
         <if test="id !=null and id !=''">
             AND id = #{id}
         </if>
+
         <if test="username !=null and username!=''">
             AND username = #{username}
         </if>
+
         <if test="password !=null and password !=''">
             AND password = #{password}
         </if>
+
         <if test="gender !=null and gender !=''">
             AND gender = #{gender}
         </if>
+
         <if test="identity !=null and identity !=''">
             AND identity = #{identity}
         </if>
+
+        <if test="status !=null and status !=''">
+            AND status = #{status}
+        </if>
+
         <if test="group !=null and group !=''">
             AND `group` = #{group}
         </if>
+
         <if test="note !=null and note !=''">
             AND note = #{note}
         </if>

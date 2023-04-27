@@ -11,6 +11,10 @@ public interface ApplicantService extends BaseService<Applicant> {
 
     List<Applicant> findByFuzzyName(Applicant applicant);
 
+    Applicant findOneByIdCard(String idCard);
+
+    Applicant findOneByMateIdCard(String mateIdCard);
+
 //    List<Applicant> getAll();
 //
 //    Applicant getApplicantById(int id);

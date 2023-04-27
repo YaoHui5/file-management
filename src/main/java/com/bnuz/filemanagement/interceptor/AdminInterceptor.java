@@ -6,9 +6,11 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.bnuz.filemanagement.annotation.PassToken;
+import com.bnuz.filemanagement.common.Identity;
 import com.bnuz.filemanagement.model.Admin;
 import com.bnuz.filemanagement.model.User;
 import com.bnuz.filemanagement.service.AdminService;
+import com.bnuz.filemanagement.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -40,6 +42,11 @@ public class AdminInterceptor implements HandlerInterceptor {
         }
 
         String token = request.getHeader("authorization").substring(7);// 从 http 请求头中取出 token
+        Integer identity = TokenUtil.getTokenIdentity(token);
+
+        if (Identity.USER.getIdentity().equals(identity)){
+            return false;
+        }
 
         //判断当前请求的url是否是对用户进行增删改查的操作
             // 获取 token 中的 adminId

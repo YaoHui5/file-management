@@ -15,6 +15,11 @@ public class HousingFileServiceImpl extends BaseServiceImpl<HousingFile,HousingF
     @Autowired
     private HousingFileMapper housingFileMapper;
 
+    @Override
+    public HousingFile findOneByIdCard(String idCard) {
+        return housingFileMapper.findOneByIdCard(idCard);
+    }
+
 //
 //    @Override
 //    public int addHousingFile(HousingFile housingFile){

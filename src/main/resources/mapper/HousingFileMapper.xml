@@ -101,14 +101,22 @@
     </update>
 
 
+<!--    &lt;!&ndash; 条件查询个人住房档案数据&ndash;&gt;-->
+<!--    <select id="findOne" resultMap="resultMap">-->
+<!--        select -->
+<!--        <include refid="select"></include>-->
+<!--        from housing_file-->
+<!--        <where>-->
+<!--            <include refid="query"></include>-->
+<!--        </where>-->
+<!--    </select>-->
+
     <!-- 条件查询个人住房档案数据-->
-    <select id="findOne" resultMap="resultMap">
-        select 
+    <select id="findOneByIdCard" resultType="com.bnuz.filemanagement.model.HousingFile">
+        select
         <include refid="select"></include>
         from housing_file
-        <where>
-            <include refid="query"></include>
-        </where>
+        where id_card = #{idCard}
     </select>
 
 

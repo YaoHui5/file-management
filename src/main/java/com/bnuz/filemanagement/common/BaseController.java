@@ -27,7 +27,7 @@ public abstract class BaseController<T extends BaseBean> {
 //    }
 
     @ApiOperation("删除")
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     Result deleteById(@PathVariable("id") Integer id){
         getService().deleteById(id);
         return Result.success(id);
@@ -46,11 +46,11 @@ public abstract class BaseController<T extends BaseBean> {
         return Result.success(getService().findById(id));
     }
 
-    @ApiOperation("查询单个")
-    @GetMapping("/findone")
-    Result findOne(@Validated T t){
-        return Result.success(getService().findOne(t));
-    }
+//    @ApiOperation("查询单个")
+//    @GetMapping("/findone")
+//    Result findOne(@Validated T t){
+//        return Result.success(getService().findOne(t));
+//    }
 
     @ApiOperation("查询所有")
     @GetMapping("/findall")

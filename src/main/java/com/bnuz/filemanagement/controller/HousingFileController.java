@@ -34,19 +34,17 @@ public class HousingFileController extends BaseController<HousingFile> {
     }
 
 
-    @ApiOperation(value = "按身份证号查询",notes = "根据申请人idcard或配偶mateIdcard查询个人住房档案")
+    @ApiOperation(value = "按身份证号查询",notes = "根据申请人身份证号查询个人住房档案")
     @GetMapping("/find/IdCard")
-    public Result findByIdCard(Applicant applicant){
+    public Result findByIdCard(String idCard){
+        return Result.success(housingFileService.findOneByIdCard(idCard));
+    }
 
-        Applicant at = new Applicant();
-
-        HousingFile hs = new HousingFile();
-
-        String houseIdCard= applicantService.findOne(applicant).getIdCard();
-
-        hs.setIdCard(houseIdCard);
-
-        return Result.success(housingFileService.findOne(hs));
+    @ApiOperation(value = "按配偶身份证号查询",notes = "根据配偶身份证查询个人住房档案")
+    @GetMapping("/find/mateIdCard")
+    public Result findByMateIdCard(String mateIdCard){
+        Applicant applicant = applicantService.findOneByMateIdCard(mateIdCard);
+        return Result.success(housingFileService.findOneByIdCard(applicant.getIdCard()));
     }
 
     @ApiOperation(value = "按姓名模糊查询",notes = "根据申请人name/mateName查询个人住房档案")
@@ -55,11 +53,9 @@ public class HousingFileController extends BaseController<HousingFile> {
         List<Applicant> applicantList = applicantService.findByFuzzyName(applicant);
 
         ArrayList<Object> housingFileList = new ArrayList<>();
-        HousingFile hs = new HousingFile();
 
         for (Applicant al: applicantList) {
-            hs.setIdCard(al.getIdCard());
-            HousingFile housingFile = housingFileService.findOne(hs);
+            HousingFile housingFile = housingFileService.findOneByIdCard(al.getIdCard());
             housingFileList.add(housingFile);
         }
 

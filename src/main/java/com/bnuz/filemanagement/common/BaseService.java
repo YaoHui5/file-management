@@ -34,7 +34,7 @@ public interface BaseService<T> {
      * @param t
      * @return
      */
-    T findOne(T t);
+//    T findOne(T t);
 
     /**
      * 根据id查找一个
